@@ -1,0 +1,10 @@
+python-dotenv
+# Later additions for specific tasks will go here
+# telethon
+# psycopg2-binary
+# dbt-postgres
+# ultralytics
+# fastapi
+# uvicorn
+# dagster
+# dagster-webserver
