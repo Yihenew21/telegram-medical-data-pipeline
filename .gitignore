@@ -23,5 +23,6 @@ logs/
 target/
 
 # ... other ignores
-telegram_scraper_session.session* # Add this line
+telegram_scraper_session.session
+*.session
 scrape.log
