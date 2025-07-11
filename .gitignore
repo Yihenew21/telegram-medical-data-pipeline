@@ -21,3 +21,8 @@ dbt_packages/
 dbt_modules/
 logs/
 target/
+
+# ... other ignores
+telegram_scraper_session.session
+*.session
+scrape.log

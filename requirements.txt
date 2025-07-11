@@ -1,6 +1,5 @@
 python-dotenv
-# Later additions for specific tasks will go here
-# telethon
+telethon
 # psycopg2-binary
 # dbt-postgres
 # ultralytics
