@@ -121,6 +121,42 @@ async def main():
     """
     Main function to establish Telegram connection and orchestrate scraping.
     """
+    if not all([API_ID, API_HASH, PHONE_NUMBER]):
+        logger.error(
+            "Telegram API credentials (API_ID, API_HASH, PHONE_NUMBER) not found in .env file. Please set them."
+        )
+        return
+
+    # Initialize Telegram Client
+    # The session file stores your login information to avoid re-authentication.
+    # Make sure to run this script once locally to authenticate.
+    client = TelegramClient("telegram_scraper_session", API_ID, API_HASH)
+
+    try:
+        logger.info("Connecting to Telegram...")
+        await client.connect()
+
+        if not await client.is_user_authorized():
+            logger.info("Client not authorized. Sending authentication code...")
+            await client.start(
+                phone=PHONE_NUMBER
+            )  # This will prompt for code/password if not already logged in
+            logger.info("Client authorized successfully.")
+
+        logger.info("Telegram client connected and authorized.")
+
+        # Run scraping for each target channel concurrently
+        tasks = [scrape_channel_data(client, channel) for channel in TARGET_CHANNELS]
+        await asyncio.gather(*tasks)
+
+    except Exception as e:
+        logger.critical(
+            f"Fatal error during Telegram client operation: {e}", exc_info=True
+        )
+    finally:
+        if client.is_connected():
+            logger.info("Disconnecting Telegram client.")
+            await client.disconnect()
 
 
 if __name__ == "__main__":

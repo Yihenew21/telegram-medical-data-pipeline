@@ -1,0 +1,65 @@
+2025-07-11 02:31:31,700 - INFO - Starting Telegram Data Scraping Process.
+2025-07-11 02:31:31,886 - INFO - Connecting to Telegram...
+2025-07-11 02:31:31,886 - INFO - Connecting to 149.154.167.51:443/TcpFull...
+2025-07-11 02:31:34,106 - INFO - Connection to 149.154.167.51:443/TcpFull complete!
+2025-07-11 02:31:34,889 - INFO - Client not authorized. Sending authentication code...
+2025-07-11 02:31:35,438 - INFO - Phone migrated to 4
+2025-07-11 02:31:35,442 - INFO - Reconnecting to new data center 4
+2025-07-11 02:31:35,577 - INFO - Disconnecting from 149.154.167.51:443/TcpFull...
+2025-07-11 02:31:35,586 - INFO - Disconnection from 149.154.167.51:443/TcpFull complete!
+2025-07-11 02:31:35,586 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-07-11 02:31:37,416 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-07-11 02:32:11,352 - INFO - Client authorized successfully.
+2025-07-11 02:32:11,352 - INFO - Telegram client connected and authorized.
+2025-07-11 02:32:11,352 - INFO - Starting scraping for channel: https://t.me/CheMed123
+2025-07-11 02:32:11,352 - INFO - Starting scraping for channel: https://t.me/lobelia4cosmetics
+2025-07-11 02:32:11,352 - INFO - Starting scraping for channel: https://t.me/tikvahpharma
+2025-07-11 02:32:11,706 - INFO - Resolved entity for https://t.me/tikvahpharma: Tikvah | Pharma
+2025-07-11 02:32:11,707 - INFO - Resolved entity for https://t.me/lobelia4cosmetics: Lobelia pharmacy and cosmetics
+2025-07-11 02:32:11,712 - INFO - Resolved entity for https://t.me/CheMed123: CheMed
+2025-07-11 02:32:12,222 - INFO - Finished scraping 100 messages from https://t.me/lobelia4cosmetics.
+2025-07-11 02:32:12,222 - ERROR - Error scraping channel https://t.me/lobelia4cosmetics: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/lobelia4cosmetics.json'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\scrape.py", line 110, in scrape_channel_data
+    with open(output_file_path, "w", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/lobelia4cosmetics.json'
+2025-07-11 02:32:12,563 - INFO - Finished scraping 76 messages from https://t.me/CheMed123.
+2025-07-11 02:32:12,563 - ERROR - Error scraping channel https://t.me/CheMed123: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/CheMed123.json'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\scrape.py", line 110, in scrape_channel_data
+    with open(output_file_path, "w", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/CheMed123.json'
+2025-07-11 02:32:12,805 - INFO - Finished scraping 100 messages from https://t.me/tikvahpharma.
+2025-07-11 02:32:12,805 - ERROR - Error scraping channel https://t.me/tikvahpharma: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/tikvahpharma.json'
+Traceback (most recent call last):
+  File "C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\scrape.py", line 110, in scrape_channel_data
+    with open(output_file_path, "w", encoding="utf-8") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acadamy -KAIM5\\telegram-medical-data-pipeline\\src\\../data/raw/telegram_messages\\2025-07-11\\https://t.me/tikvahpharma.json'
+2025-07-11 02:32:12,805 - INFO - Disconnecting Telegram client.
+2025-07-11 02:32:12,805 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-07-11 02:32:12,805 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-07-11 02:32:12,820 - INFO - Telegram Data Scraping Process Finished.
+2025-07-11 02:33:03,414 - INFO - Starting Telegram Data Scraping Process.
+2025-07-11 02:33:03,485 - INFO - Connecting to Telegram...
+2025-07-11 02:33:03,485 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-07-11 02:33:03,664 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-07-11 02:33:04,794 - INFO - Telegram client connected and authorized.
+2025-07-11 02:33:04,796 - INFO - Starting scraping for channel: @CheMed123
+2025-07-11 02:33:04,798 - INFO - Starting scraping for channel: @lobelia4cosmetics
+2025-07-11 02:33:04,798 - INFO - Starting scraping for channel: @tikvahpharma
+2025-07-11 02:33:05,077 - INFO - Resolved entity for @lobelia4cosmetics: Lobelia pharmacy and cosmetics
+2025-07-11 02:33:05,077 - INFO - Resolved entity for @CheMed123: CheMed
+2025-07-11 02:33:05,077 - INFO - Resolved entity for @tikvahpharma: Tikvah | Pharma
+2025-07-11 02:33:05,671 - INFO - Finished scraping 76 messages from @CheMed123.
+2025-07-11 02:33:05,687 - INFO - Data for @CheMed123 saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-11\@CheMed123.json
+2025-07-11 02:33:06,060 - INFO - Finished scraping 100 messages from @tikvahpharma.
+2025-07-11 02:33:06,060 - INFO - Data for @tikvahpharma saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-11\@tikvahpharma.json
+2025-07-11 02:33:06,160 - INFO - Finished scraping 100 messages from @lobelia4cosmetics.
+2025-07-11 02:33:06,172 - INFO - Data for @lobelia4cosmetics saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-11\@lobelia4cosmetics.json
+2025-07-11 02:33:06,172 - INFO - Disconnecting Telegram client.
+2025-07-11 02:33:06,172 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-07-11 02:33:06,175 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-07-11 02:33:06,183 - INFO - Telegram Data Scraping Process Finished.
