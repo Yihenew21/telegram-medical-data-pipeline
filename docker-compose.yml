@@ -5,8 +5,6 @@ services:
   app:
     build: . # Build the image using the Dockerfile in the current directory
     container_name: telegram_app
-    # Command to run your application; will be updated for Dagster later
-    # For now, we can run a simple sleep to keep the container alive or a placeholder script
     command: tail -F /dev/null # Keep the container running for development, replace later
 
     volumes:
@@ -19,29 +17,12 @@ services:
     env_file:
       - ./.env # Load environment variables from the .env file
 
-    depends_on:
-      - db # This service depends on the 'db' service being up and running
-
     networks:
       - telegram_network # Connect to a custom network
 
-  # PostgreSQL database service
-  db:
-    image: postgres:13 # Use a specific PostgreSQL image
-    container_name: telegram_db
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    ports:
-      - "5432:5432" # Map host port 5432 to container port 5432
-    volumes:
-      - pg_data:/var/lib/postgresql/data # Persist database data
-    networks:
-      - telegram_network # Connect to the same custom network
-
-volumes:
-  pg_data: # Define a named volume for PostgreSQL data persistence
+# --- REMOVED THE TOP-LEVEL 'volumes:' SECTION COMPLETELY ---
+# Because there are no named volumes being defined anymore.
+# Only service-specific bind mounts are used.
 
 networks:
   telegram_network: # Define a custom network for services to communicate
