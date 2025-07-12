@@ -1,29 +1,27 @@
-version: '3.8' # Specify the Docker Compose file format version
+version: '3.8'
 
 services:
-  # Your Python application service
   app:
-    build: . # Build the image using the Dockerfile in the current directory
+    build: .
     container_name: telegram_app
-    command: tail -F /dev/null # Keep the container running for development, replace later
+    command: tail -F /dev/null
+
+    working_dir: /app/telegram_dbt_project # <--- ADD THIS LINE
 
     volumes:
-      - .:/app # Mount the current directory into the container's /app directory
-      - ./data/raw:/app/data/raw # Explicitly mount raw data directory for persistence
+      - .:/app
+      - ./data/raw:/app/data/raw
+      - ~/.dbt:/root/.dbt
 
     ports:
-      - "8000:8000" # Map host port 8000 to container port 8000 (for FastAPI later)
+      - "8000:8000"
 
     env_file:
-      - ./.env # Load environment variables from the .env file
+      - ./.env
 
     networks:
-      - telegram_network # Connect to a custom network
-
-# --- REMOVED THE TOP-LEVEL 'volumes:' SECTION COMPLETELY ---
-# Because there are no named volumes being defined anymore.
-# Only service-specific bind mounts are used.
+      - telegram_network
 
 networks:
-  telegram_network: # Define a custom network for services to communicate
+  telegram_network:
     driver: bridge
