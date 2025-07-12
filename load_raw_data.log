@@ -1,0 +1,138 @@
+2025-07-11 02:28:36,259 - INFO - Starting raw data loading process to PostgreSQL.
+2025-07-11 02:28:36,269 - ERROR - Failed to connect to database: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:28:36,285 - CRITICAL - Fatal error during raw data loading process: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 87, in load_json_to_postgres
+    conn = get_db_connection()
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:28:36,288 - INFO - Raw data loading process finished.
+2025-07-11 02:31:15,147 - INFO - Starting raw data loading process to PostgreSQL.
+2025-07-11 02:31:15,151 - ERROR - Failed to connect to database: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:31:15,175 - CRITICAL - Fatal error during raw data loading process: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 87, in load_json_to_postgres
+    conn = get_db_connection()
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:31:15,183 - INFO - Raw data loading process finished.
+2025-07-11 02:40:19,775 - INFO - Starting raw data loading process to PostgreSQL.
+2025-07-11 02:40:19,780 - ERROR - Failed to connect to database: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:40:19,797 - CRITICAL - Fatal error during raw data loading process: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 87, in load_json_to_postgres
+    conn = get_db_connection()
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-11 02:40:19,803 - INFO - Raw data loading process finished.
+2025-07-12 21:28:16,856 - INFO - Starting raw data loading process to PostgreSQL.
+2025-07-12 21:28:16,864 - ERROR - Failed to connect to database: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-12 21:28:16,877 - CRITICAL - Fatal error during raw data loading process: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+Traceback (most recent call last):
+  File "/app/src/load_raw_data.py", line 87, in load_json_to_postgres
+    conn = get_db_connection()
+  File "/app/src/load_raw_data.py", line 35, in get_db_connection
+    conn = psycopg2.connect(
+  File "/usr/local/lib/python3.9/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-07-12 21:28:16,881 - INFO - Raw data loading process finished.
+2025-07-12 21:35:40,749 - INFO - Starting raw data loading process to PostgreSQL.
+2025-07-12 21:35:40,925 - INFO - Checked/created 'raw.telegram_messages' table.
+2025-07-12 21:35:40,969 - INFO - Found 3 JSON files to process.
+2025-07-12 21:35:41,326 - INFO - Successfully processed and loaded data from /app/src/../data/raw/telegram_messages/2025-07-11/@CheMed123.json. New records in this file: 76
+2025-07-12 21:35:41,469 - INFO - Inserted 100 new records so far...
+2025-07-12 21:35:41,736 - INFO - Successfully processed and loaded data from /app/src/../data/raw/telegram_messages/2025-07-11/@lobelia4cosmetics.json. New records in this file: 100
+2025-07-12 21:35:41,884 - INFO - Inserted 200 new records so far...
+2025-07-12 21:35:42,082 - INFO - Successfully processed and loaded data from /app/src/../data/raw/telegram_messages/2025-07-11/@tikvahpharma.json. New records in this file: 100
+2025-07-12 21:35:42,083 - INFO - Finished loading raw data. Total new records inserted: 276.
+2025-07-12 21:35:42,084 - INFO - Raw data loading process finished.
