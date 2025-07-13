@@ -17,9 +17,8 @@ clean-targets:         # directories to clean when `dbt clean` is run
   - "dbt_packages"
   - "logs"
 
+
 models:
   telegram_dbt_project:
-    # This config applies to all models in your project
-    # It sets the default schema for all models
-    +schema: analytics # We'll start with 'analytics', can be changed later
-    +materialized: view # Default materialization for all models (view, table, incremental, ephemeral)
+    +schema: analytics
+    +materialized: view
