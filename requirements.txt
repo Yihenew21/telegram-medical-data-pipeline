@@ -2,7 +2,7 @@ python-dotenv
 telethon
 psycopg2-binary
 dbt-postgres  # <--- Add this line
-# ultralytics
+ultralytics
 # fastapi
 # uvicorn
 # dagster
