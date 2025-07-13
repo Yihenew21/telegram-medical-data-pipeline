@@ -24,17 +24,21 @@ API_ID = os.getenv("TELEGRAM_API_ID")
 API_HASH = os.getenv("TELEGRAM_API_HASH")
 PHONE_NUMBER = os.getenv("PHONE_NUMBER")
 
-# Define the output directory for raw data
+# Define the output directory for raw message JSON data
 RAW_DATA_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "../data/raw/telegram_messages"
 )
-# Ensure the base directory exists
+# Ensure the base directory exists for JSON data
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
 
+# NEW: Define the output directory for downloaded media files
+MEDIA_DOWNLOAD_DIR = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "../data/raw/telegram_media"
+)
+# Ensure media directory exists
+os.makedirs(MEDIA_DOWNLOAD_DIR, exist_ok=True)
+
 # List of public Telegram channels to scrape (replace with actual channel usernames or IDs)
-# You can find usernames in the channel's info, e.g., @tikvahpharma
-# For private channels, you need to be a member and might use their numeric ID.
-# We will use public channels here.
 TARGET_CHANNELS = [
     "@CheMed123",
     "@lobelia4cosmetics",
@@ -47,7 +51,7 @@ TARGET_CHANNELS = [
 async def scrape_channel_data(client, channel_username, limit=100):
     """
     Scrapes messages from a given Telegram channel and saves them as JSON files.
-    Collects message data, including text and basic media info.
+    Collects message data, including text and basic media info, and downloads media.
     """
     logger.info(f"Starting scraping for channel: {channel_username}")
     all_messages = []
@@ -69,19 +73,41 @@ async def scrape_channel_data(client, channel_username, limit=100):
                 "views": message.views,
                 "forwards": message.forwards,
                 "replies_count": message.replies.replies if message.replies else 0,
-                "has_media": bool(message.media),
+                # Initialize media fields, will be updated if media exists
+                "has_media": False,
                 "media_type": None,
                 "file_name": None,
                 "mime_type": None,
                 "file_size": None,
                 "is_photo": False,
                 "is_document": False,
+                "local_media_path": None,  # NEW: To store the path to downloaded media
             }
 
             if message.media:
+                message_dict["has_media"] = True
                 message_dict["media_type"] = message.media.__class__.__name__
+
+                # Handle Photo Media
                 if isinstance(message.media, MessageMediaPhoto):
                     message_dict["is_photo"] = True
+                    # Construct a unique path for the photo
+                    photo_filename = f"photo_{message.id}_{message.date.strftime('%Y%m%d%H%M%S')}.jpg"
+                    photo_path = os.path.join(MEDIA_DOWNLOAD_DIR, photo_filename)
+                    try:
+                        downloaded_path = await client.download_media(
+                            message.media, file=photo_path
+                        )
+                        message_dict["local_media_path"] = downloaded_path
+                        logger.info(
+                            f"Downloaded photo for message {message.id} to: {downloaded_path}"
+                        )
+                    except Exception as download_e:
+                        logger.warning(
+                            f"Failed to download photo for message {message.id}: {download_e}"
+                        )
+
+                # Handle Document Media (which includes GIFs, videos, files)
                 elif isinstance(message.media, MessageMediaDocument):
                     message_dict["is_document"] = True
                     document = message.media.document
@@ -93,13 +119,34 @@ async def scrape_channel_data(client, channel_username, limit=100):
                     message_dict["mime_type"] = document.mime_type
                     message_dict["file_size"] = document.size
 
+                    # Construct a unique path for the document
+                    # Use provided filename or a generic one if not available
+                    doc_filename = (
+                        message_dict["file_name"]
+                        if message_dict["file_name"]
+                        else f"document_{message.id}"
+                    )
+                    doc_path = os.path.join(MEDIA_DOWNLOAD_DIR, doc_filename)
+                    try:
+                        downloaded_path = await client.download_media(
+                            message.media, file=doc_path
+                        )
+                        message_dict["local_media_path"] = downloaded_path
+                        logger.info(
+                            f"Downloaded document for message {message.id} to: {downloaded_path}"
+                        )
+                    except Exception as download_e:
+                        logger.warning(
+                            f"Failed to download document for message {message.id}: {download_e}"
+                        )
+
             all_messages.append(message_dict)
 
         logger.info(
             f"Finished scraping {len(all_messages)} messages from {channel_username}."
         )
 
-        # Save to Data Lake
+        # Save to Data Lake (JSON metadata)
         today_str = datetime.now().strftime("%Y-%m-%d")
         channel_dir = os.path.join(RAW_DATA_DIR, today_str)
         os.makedirs(
@@ -128,8 +175,6 @@ async def main():
         return
 
     # Initialize Telegram Client
-    # The session file stores your login information to avoid re-authentication.
-    # Make sure to run this script once locally to authenticate.
     client = TelegramClient("telegram_scraper_session", API_ID, API_HASH)
 
     try:

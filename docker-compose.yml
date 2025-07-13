@@ -12,7 +12,8 @@ services:
       - .:/app
       - ./data/raw:/app/data/raw
       - ~/.dbt:/root/.dbt
-
+      # NEW: Mount the telegram_media directory
+      - ./data/raw/telegram_media:/app/data/raw/telegram_media
     ports:
       - "8080:8080"
 
