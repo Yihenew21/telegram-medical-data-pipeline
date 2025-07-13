@@ -1,0 +1,19 @@
+# models/staging/sources.yml
+
+version: 2
+
+sources:
+  - name: raw # This name is what you'll use in `{{ source('raw', ...)`
+    database: "{{ env_var('POSTGRES_DB') }}" # Refer to your database name
+    schema: raw # This is the schema where your raw data lives
+    tables:
+      - name: telegram_messages # The table name
+        identifier: telegram_messages # Optional, defaults to name, but good for clarity
+        # You can add documentation and tests here later!
+        # description: "Raw messages scraped from Telegram channels."
+        # columns:
+        #   - name: message_id
+        #     description: "Unique identifier for the message."
+        #     tests:
+        #       - unique
+        #       - not_null

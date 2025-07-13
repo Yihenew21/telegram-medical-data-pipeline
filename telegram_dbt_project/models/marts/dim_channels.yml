@@ -1,0 +1,17 @@
+# models/marts/dim_channels.yml
+version: 2
+
+models:
+  - name: dim_channels
+    description: "Dimension table for unique Telegram channels."
+    columns:
+      - name: channel_pk
+        description: "Unique surrogate key for the channel."
+        tests:
+          - unique
+          - not_null
+      - name: channel_username
+        description: "The unique username of the Telegram channel."
+        tests:
+          - unique # channel username should also be unique
+          - not_null

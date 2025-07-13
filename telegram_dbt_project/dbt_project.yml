@@ -1,0 +1,24 @@
+name: 'telegram_dbt_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'telegram_project' # <--- Make sure this matches your profile name
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory to write compiled SQL to
+clean-targets:         # directories to clean when `dbt clean` is run
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+
+models:
+  telegram_dbt_project:
+    +schema: analytics
+    +materialized: view
