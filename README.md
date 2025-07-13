@@ -1,6 +1,15 @@
-# Telegram Medical Data Pipline
+# Telegram Medical Data Pipeline
 
 A comprehensive ELT (Extract, Load, Transform) data pipeline that collects Telegram channel messages, stores them in a data lake, loads them into a PostgreSQL data warehouse, and transforms them into an analytical star schema using dbt.
+
+## 🏆 Project Highlights
+
+✅ **Complete ELT Pipeline**: Fully functional end-to-end data pipeline  
+✅ **Docker Orchestration**: Containerized application with PostgreSQL integration  
+✅ **dbt Transformations**: Comprehensive star schema with staging and mart layers  
+✅ **Data Quality Testing**: Built-in and custom dbt tests ensuring data integrity  
+✅ **Production-Ready**: Robust error handling, logging, and monitoring  
+✅ **Comprehensive Documentation**: Auto-generated dbt docs and detailed setup guides  
 
 ## 🏗️ Architecture Overview
 
@@ -10,16 +19,9 @@ Telegram API → Raw Data Lake → PostgreSQL (Raw) → dbt Transformations → 
   scrape.py    JSON Files    load_raw_data.py    Star Schema Tables
 ```
 
-## 🎯 Project Objectives
+## 📊 Data Model - Star Schema
 
-- **Extract**: Scrape message data from public Telegram channels using Telethon
-- **Load**: Store raw data in partitioned JSON files and PostgreSQL raw schema
-- **Transform**: Create dimensional star schema for analytics using dbt
-- **Quality**: Implement comprehensive testing and documentation
-
-## 📊 Data Model
-
-### Star Schema Design
+### Dimensional Design
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   dim_channels  │    │   fct_messages  │    │   dim_dates     │
@@ -36,57 +38,33 @@ Telegram API → Raw Data Lake → PostgreSQL (Raw) → dbt Transformations → 
                        └─────────────────┘
 ```
 
-## 🚀 Complete Setup Guide
+## 🚀 Quick Start Guide
 
 ### Prerequisites
 - Docker & Docker Compose (20.10+)
 - Python 3.8+
 - PostgreSQL 13+ (local installation)
-- Telegram API credentials (from my.telegram.org)
+- Telegram API credentials ([Get them here](https://my.telegram.org))
 
-### Step 1: Environment Preparation
-
-#### 1.1 Clone Repository
+### One-Command Setup
 ```bash
+# Clone and setup
 git clone <repository-url>
 cd telegram_data_product
+cp .env.example .env  # Edit with your credentials
+docker-compose up --build -d
+
+# Run complete pipeline
+./run_pipeline.sh
 ```
 
-#### 1.2 Python Virtual Environment
-```bash
-# Create and activate virtual environment
-python -m venv venv
+### Environment Configuration
 
-# Activate (Linux/Mac)
-source venv/bin/activate
-
-# Activate (Windows)
-venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### 1.3 PostgreSQL Setup
-```bash
-# Connect to PostgreSQL as superuser
-psql -U postgres
-
-# Create database and user
-CREATE DATABASE telegram_warehouse;
-CREATE USER telegram_user WITH PASSWORD 'secure_password_123';
-GRANT ALL PRIVILEGES ON DATABASE telegram_warehouse TO telegram_user;
-\q
-```
-
-### Step 2: Configuration
-
-#### 2.1 Environment Variables
-Create `.env` file in project root:
+Create `.env` file with your credentials:
 ```env
-# Telegram API Configuration (Get from https://my.telegram.org)
+# Telegram API Configuration
 TELEGRAM_API_ID=your_api_id_here
-TELEGRAM_API_HASH=your_api_hash_here
+TELEGRAM_API_HASH=your_api_hash_here  
 PHONE_NUMBER=+1234567890
 
 # PostgreSQL Configuration
@@ -97,136 +75,39 @@ POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
 
-#### 2.2 dbt Profile Configuration
-Create `~/.dbt/profiles.yml`:
-```yaml
-telegram_project:
-  target: dev
-  outputs:
-    dev:
-      type: postgres
-      host: host.docker.internal
-      user: "{{ env_var('POSTGRES_USER') }}"
-      password: "{{ env_var('POSTGRES_PASSWORD') }}"
-      port: 5432
-      dbname: "{{ env_var('POSTGRES_DB') }}"
-      schema: analytics
-      threads: 4
-      keepalives_idle: 0
-```
-
-### Step 3: Running the Complete Pipeline
-
-#### 3.1 Docker Method (Recommended)
+### Local PostgreSQL Setup
 ```bash
-# Build and start containers
-docker-compose up --build -d
-
-# Verify containers are running
-docker-compose ps
-
-# Execute complete pipeline
-./run_pipeline.sh
+# Create database and user
+psql -U postgres
+CREATE DATABASE telegram_warehouse;
+CREATE USER telegram_user WITH PASSWORD 'secure_password_123';
+GRANT ALL PRIVILEGES ON DATABASE telegram_warehouse TO telegram_user;
+\q
 ```
 
-#### 3.2 Manual Step-by-Step Execution
-```bash
-# Step 1: Data Extraction
-docker exec telegram_app python src/scrape.py
-
-# Step 2: Data Loading
-docker exec telegram_app python src/load_raw_data.py
-
-# Step 3: dbt Transformations
-docker exec telegram_app dbt run --project-dir telegram_dbt_project
-
-# Step 4: Data Quality Tests
-docker exec telegram_app dbt test --project-dir telegram_dbt_project
-
-# Step 5: Generate Documentation
-docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
-docker exec telegram_app dbt docs serve --project-dir telegram_dbt_project --port 8080
-```
-
-### Step 4: Verification
-
-#### 4.1 Data Verification
-```bash
-# Check raw data files
-ls -la data/raw/telegram_messages/
-
-# Verify PostgreSQL data
-docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -c "SELECT COUNT(*) FROM raw.telegram_messages;"
-
-# Check analytics tables
-docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -c "SELECT COUNT(*) FROM analytics.fct_messages;"
-```
-
-## 📁 Project Structure
-
-```
-Telegram Medical Data Pipline/
-├── src/                           # Source code
-│   ├── scrape.py                 # Telegram data extraction
-│   ├── load_raw_data.py          # Raw data loading to PostgreSQL
-│   └── config.py                 # Configuration management
-├── telegram_dbt_project/         # dbt project
-│   ├── models/
-│   │   ├── staging/
-│   │   │   ├── stg_telegram_messages.sql  # Staging transformations
-│   │   │   └── sources.yml               # Source definitions
-│   │   └── marts/
-│   │       ├── dim_channels.sql          # Channel dimension
-│   │       ├── dim_dates.sql             # Date dimension
-│   │       ├── fct_messages.sql          # Message fact table
-│   │       └── schema.yml                # Model tests and docs
-│   ├── tests/
-│   │   └── no_negative_views.sql         # Custom data test
-│   ├── dbt_project.yml                   # dbt configuration
-│   └── packages.yml                      # dbt packages
-├── data/
-│   └── raw/
-│       └── telegram_messages/            # Raw data lake
-│           └── YYYY-MM-DD/
-│               └── channel_name.json
-├── logs/                                 # Application logs
-├── docker-compose.yml                    # Docker orchestration
-├── Dockerfile                           # Container definition
-├── requirements.txt                     # Python dependencies
-├── .env                                 # Environment variables
-├── .gitignore                          # Git ignore rules
-├── run_pipeline.sh                     # Pipeline execution script
-└── README.md                           # This file
-```
-
-## 🔧 Detailed Component Documentation
+## 🔧 Pipeline Components
 
 ### 1. Data Extraction (`src/scrape.py`)
+**Advanced Telegram scraping with comprehensive logging**
 
-**Purpose**: Asynchronously scrapes messages from specified Telegram channels using Telethon
-
-**Key Features**:
-- Concurrent processing of multiple channels
-- Comprehensive logging with rotation
-- Media metadata extraction (photos, documents, videos)
-- Date-based partitioning for efficient storage
-- Error handling and retry mechanisms
-- Session management for authentication
-
-**Configuration**:
 ```python
-# Edit TARGET_CHANNELS in src/scrape.py
+# Target channels configuration
 TARGET_CHANNELS = [
     '@CheMed123',
-    '@lobelia4cosmetics',
+    '@lobelia4cosmetics', 
     '@tikvahpharma'
 ]
-
-# Adjust message limits
-MESSAGE_LIMIT = 100  # Messages per channel
 ```
 
-**Output Format**:
+**Key Features:**
+- ✅ Asynchronous concurrent processing
+- ✅ Comprehensive media metadata extraction
+- ✅ Date-based partitioning (`YYYY-MM-DD/channel_name.json`)
+- ✅ Robust error handling and retry mechanisms
+- ✅ Session management and authentication
+- ✅ Detailed logging to `logs/scrape.log`
+
+**Output Structure:**
 ```json
 {
   "message_id": 123,
@@ -236,28 +117,24 @@ MESSAGE_LIMIT = 100  # Messages per channel
   "forwards": 5,
   "replies": 2,
   "media_type": "photo",
-  "file_name": "image.jpg",
-  "file_size": 1024000,
   "channel_username": "channel1",
   "channel_title": "Sample Channel"
 }
 ```
 
 ### 2. Data Loading (`src/load_raw_data.py`)
+**Efficient raw data loading with incremental processing**
 
-**Purpose**: Loads raw JSON data into PostgreSQL with incremental processing
+**Key Features:**
+- ✅ Incremental loading (prevents duplicates)
+- ✅ JSONB storage for flexible querying
+- ✅ Transaction management with rollback
+- ✅ Comprehensive error handling
+- ✅ Progress tracking and logging
 
-**Key Features**:
-- Incremental loading (prevents duplicates)
-- JSONB storage for flexible querying
-- Transaction management with rollback
-- Comprehensive error handling
-- Progress tracking and logging
-
-**Database Schema**:
+**Database Schema:**
 ```sql
 CREATE SCHEMA IF NOT EXISTS raw;
-
 CREATE TABLE IF NOT EXISTS raw.telegram_messages (
     message_id BIGINT,
     channel_username VARCHAR(255),
@@ -268,82 +145,80 @@ CREATE TABLE IF NOT EXISTS raw.telegram_messages (
 );
 ```
 
-### 3. dbt Transformations
+### 3. dbt Transformations (`telegram_dbt_project/`)
+**Complete dimensional modeling with comprehensive testing**
 
-#### 3.1 Staging Layer (`models/staging/`)
+#### 📁 dbt Project Structure
+```
+telegram_dbt_project/
+├── models/
+│   ├── staging/
+│   │   ├── stg_telegram_messages.sql     # Data cleaning & standardization
+│   │   └── sources.yml                   # Source definitions
+│   └── marts/
+│       ├── dim_channels.sql              # Channel dimension
+│       ├── dim_dates.sql                 # Date dimension
+│       ├── fct_messages.sql              # Message fact table
+│       └── schema.yml                    # Model tests & documentation
+├── tests/
+│   └── no_negative_views.sql             # Custom business rule test
+├── dbt_project.yml                       # dbt configuration
+└── packages.yml                          # dbt packages
+```
 
-**`stg_telegram_messages.sql`**:
-- Extracts and cleans data from raw JSONB
-- Handles null values and type casting
-- Standardizes column names
-- Applies basic business rules
+#### 🔄 Transformation Layers
 
+##### **Staging Layer** (`models/staging/`)
 ```sql
--- Example transformation
+-- stg_telegram_messages.sql
+-- Cleans and standardizes raw JSONB data
 SELECT 
     (message_data->>'message_id')::BIGINT as message_id,
     COALESCE((message_data->>'views')::INT, 0) as views_count,
     TO_TIMESTAMP(message_data->>'date', 'YYYY-MM-DD"T"HH24:MI:SS') as created_at,
-    -- ... other transformations
+    -- Additional transformations...
 FROM {{ source('telegram_raw', 'telegram_messages') }}
 ```
 
-#### 3.2 Mart Layer (`models/marts/`)
+##### **Mart Layer** (`models/marts/`)
+- **`dim_channels`**: Unique channel information with surrogate keys
+- **`dim_dates`**: Date dimension with calendar attributes  
+- **`fct_messages`**: Central fact table with all metrics
 
-**Dimensional Tables**:
-- `dim_channels`: Channel information with surrogate keys
-- `dim_dates`: Date dimension with calendar attributes
-- `fct_messages`: Central fact table with metrics
+#### 🧪 Data Quality Testing
 
-**Relationships**:
-```sql
--- Foreign key relationships in fct_messages
-{{ ref('dim_channels') }} ON channel_pk
-{{ ref('dim_dates') }} ON date_pk
-```
-
-### 4. Testing Strategy
-
-#### 4.1 Built-in dbt Tests
+##### **Built-in dbt Tests**
 ```yaml
-# In models/marts/schema.yml
-tests:
-  - unique:
-      column_name: channel_pk
-  - not_null:
-      column_name: channel_username
-  - relationships:
-      to: ref('dim_channels')
-      field: channel_pk
+# models/marts/schema.yml
+models:
+  - name: fct_messages
+    columns:
+      - name: message_id
+        tests:
+          - unique
+          - not_null
+      - name: channel_pk
+        tests:
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_pk
 ```
 
-#### 4.2 Custom Tests
+##### **Custom Business Rule Tests**
 ```sql
 -- tests/no_negative_views.sql
+-- Ensures views_count is never negative
 SELECT *
 FROM {{ ref('fct_messages') }}
 WHERE views_count < 0
 ```
 
-#### 4.3 Test Execution
-```bash
-# Run all tests
-dbt test --project-dir telegram_dbt_project
+## 📊 Complete Pipeline Execution
 
-# Run specific test type
-dbt test --select test_type:generic --project-dir telegram_dbt_project
-dbt test --select test_type:singular --project-dir telegram_dbt_project
-
-# Test specific model
-dbt test --select fct_messages --project-dir telegram_dbt_project
-```
-
-## 🚀 Complete Pipeline Execution
-
-### Automated Pipeline Script (`run_pipeline.sh`)
+### Automated Pipeline Script
 ```bash
 #!/bin/bash
-set -e
+# run_pipeline.sh - Complete pipeline execution
 
 echo "🚀 Starting Telegram Data Pipeline..."
 
@@ -351,7 +226,7 @@ echo "🚀 Starting Telegram Data Pipeline..."
 echo "📥 Extracting data from Telegram channels..."
 docker exec telegram_app python src/scrape.py
 
-# Step 2: Data Loading
+# Step 2: Data Loading  
 echo "💾 Loading raw data to PostgreSQL..."
 docker exec telegram_app python src/load_raw_data.py
 
@@ -368,33 +243,88 @@ echo "📚 Generating documentation..."
 docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
 
 echo "✅ Pipeline completed successfully!"
-echo "📊 Access documentation at: http://localhost:8080"
 ```
 
-### Make script executable:
+### Manual Step-by-Step Execution
 ```bash
-chmod +x run_pipeline.sh
+# Build and start containers
+docker-compose up --build -d
+
+# Execute pipeline steps
+docker exec telegram_app python src/scrape.py
+docker exec telegram_app python src/load_raw_data.py
+docker exec telegram_app dbt run --project-dir telegram_dbt_project
+docker exec telegram_app dbt test --project-dir telegram_dbt_project
+
+# Generate and serve documentation
+docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
+docker exec telegram_app dbt docs serve --project-dir telegram_dbt_project --port 8080
 ```
 
-## 🔍 Monitoring and Logging
+## 🔍 Data Quality & Testing
 
-### Log Files and Locations
-```
-logs/
-├── scrape.log              # Data extraction logs
-├── load_raw_data.log       # Data loading logs
-└── dbt.log                 # dbt transformation logs
-```
+### Testing Strategy
+1. **Built-in dbt Tests**: `unique`, `not_null`, `relationships`
+2. **Custom Business Rules**: Domain-specific validation
+3. **Data Freshness**: Source data recency checks
+4. **Referential Integrity**: Foreign key relationships
 
-### Log Monitoring
+### Test Execution
 ```bash
-# Real-time log monitoring
-tail -f logs/scrape.log
-tail -f logs/load_raw_data.log
+# Run all tests
+docker exec telegram_app dbt test --project-dir telegram_dbt_project
 
-# Log analysis
-grep "ERROR" logs/*.log
-grep "WARNING" logs/*.log
+# Run specific test types
+docker exec telegram_app dbt test --select test_type:generic
+docker exec telegram_app dbt test --select test_type:singular
+
+# Test specific models
+docker exec telegram_app dbt test --select fct_messages
+```
+
+## 📊 Analytics Examples
+
+### Business Intelligence Queries
+```sql
+-- Top performing channels by engagement
+SELECT 
+    dc.channel_username,
+    dc.channel_title,
+    COUNT(*) as total_messages,
+    AVG(fm.views_count) as avg_views,
+    SUM(fm.forwards_count) as total_forwards
+FROM analytics.fct_messages fm
+JOIN analytics.dim_channels dc ON fm.channel_pk = dc.channel_pk
+GROUP BY dc.channel_pk, dc.channel_username, dc.channel_title
+ORDER BY avg_views DESC;
+
+-- Daily engagement trends
+SELECT 
+    dd.scraped_date,
+    dd.day_of_week,
+    COUNT(*) as message_count,
+    AVG(fm.views_count) as avg_views,
+    SUM(fm.views_count) as total_views
+FROM analytics.fct_messages fm
+JOIN analytics.dim_dates dd ON fm.date_pk = dd.date_pk
+GROUP BY dd.date_pk, dd.scraped_date, dd.day_of_week
+ORDER BY dd.scraped_date DESC;
+```
+
+## 🔧 Verification & Monitoring
+
+### Data Verification Commands
+```bash
+# Check raw data files
+ls -la data/raw/telegram_messages/
+
+# Verify PostgreSQL data
+docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse \
+  -c "SELECT COUNT(*) FROM raw.telegram_messages;"
+
+# Check analytics tables
+docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse \
+  -c "SELECT COUNT(*) FROM analytics.fct_messages;"
 ```
 
 ### Health Checks
@@ -402,7 +332,7 @@ grep "WARNING" logs/*.log
 # Container health
 docker-compose ps
 
-# Database connectivity
+# Database connectivity test
 docker exec telegram_app python -c "
 from src.config import get_db_connection
 try:
@@ -413,349 +343,157 @@ except Exception as e:
     print(f'❌ Database connection failed: {e}')
 "
 
-# dbt connection
+# dbt connection test
 docker exec telegram_app dbt debug --project-dir telegram_dbt_project
 ```
 
-## 📈 Usage Examples and Analytics
+## 📚 Documentation
 
-### Basic Analytics Queries
-```sql
--- 1. Top performing channels by engagement
-SELECT 
-    dc.channel_username,
-    dc.channel_title,
-    COUNT(*) as total_messages,
-    AVG(fm.views_count) as avg_views,
-    SUM(fm.forwards_count) as total_forwards,
-    SUM(fm.replies_count) as total_replies
-FROM analytics.fct_messages fm
-JOIN analytics.dim_channels dc ON fm.channel_pk = dc.channel_pk
-GROUP BY dc.channel_pk, dc.channel_username, dc.channel_title
-ORDER BY avg_views DESC
-LIMIT 10;
-
--- 2. Daily message trends with engagement metrics
-SELECT 
-    dd.scraped_date,
-    dd.day_of_week,
-    COUNT(*) as message_count,
-    AVG(fm.views_count) as avg_views,
-    SUM(fm.views_count) as total_views,
-    COUNT(CASE WHEN fm.media_type IS NOT NULL THEN 1 END) as media_messages
-FROM analytics.fct_messages fm
-JOIN analytics.dim_dates dd ON fm.date_pk = dd.date_pk
-GROUP BY dd.date_pk, dd.scraped_date, dd.day_of_week
-ORDER BY dd.scraped_date DESC;
-
--- 3. Media type distribution analysis
-SELECT 
-    fm.media_type,
-    COUNT(*) as message_count,
-    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) as percentage,
-    AVG(fm.views_count) as avg_views
-FROM analytics.fct_messages fm
-WHERE fm.media_type IS NOT NULL
-GROUP BY fm.media_type
-ORDER BY message_count DESC;
-
--- 4. Channel performance comparison
-SELECT 
-    dc.channel_username,
-    COUNT(*) as messages,
-    AVG(fm.views_count) as avg_views,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY fm.views_count) as median_views,
-    MAX(fm.views_count) as max_views,
-    COUNT(CASE WHEN fm.forwards_count > 0 THEN 1 END) as forwarded_messages
-FROM analytics.fct_messages fm
-JOIN analytics.dim_channels dc ON fm.channel_pk = dc.channel_pk
-GROUP BY dc.channel_pk, dc.channel_username
-HAVING COUNT(*) > 10
-ORDER BY avg_views DESC;
-```
-
-### Advanced Analytics
-```sql
--- 5. Weekly engagement trends
-SELECT 
-    DATE_TRUNC('week', dd.scraped_date) as week_start,
-    COUNT(*) as weekly_messages,
-    AVG(fm.views_count) as avg_weekly_views,
-    SUM(fm.forwards_count) as weekly_forwards
-FROM analytics.fct_messages fm
-JOIN analytics.dim_dates dd ON fm.date_pk = dd.date_pk
-GROUP BY DATE_TRUNC('week', dd.scraped_date)
-ORDER BY week_start DESC;
-
--- 6. Content performance by length
-SELECT 
-    CASE 
-        WHEN LENGTH(fm.message_text) <= 100 THEN 'Short (≤100)'
-        WHEN LENGTH(fm.message_text) <= 500 THEN 'Medium (101-500)'
-        ELSE 'Long (>500)'
-    END as message_length_category,
-    COUNT(*) as message_count,
-    AVG(fm.views_count) as avg_views,
-    AVG(fm.forwards_count) as avg_forwards
-FROM analytics.fct_messages fm
-WHERE fm.message_text IS NOT NULL
-GROUP BY 
-    CASE 
-        WHEN LENGTH(fm.message_text) <= 100 THEN 'Short (≤100)'
-        WHEN LENGTH(fm.message_text) <= 500 THEN 'Medium (101-500)'
-        ELSE 'Long (>500)'
-    END
-ORDER BY avg_views DESC;
-```
-
-## 🛠️ Troubleshooting Guide
-
-### Common Issues and Solutions
-
-#### 1. Telegram Authentication Issues
-**Problem**: Authentication fails or session expires
+### Auto-Generated dbt Documentation
 ```bash
-# Solution: Clear session and re-authenticate
+# Generate comprehensive docs
+docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
+
+# Serve documentation locally
+docker exec telegram_app dbt docs serve --project-dir telegram_dbt_project --port 8080
+```
+
+**Access documentation at:** `http://localhost:8080`
+
+**Documentation includes:**
+- 📊 Model lineage and dependencies
+- 📋 Column descriptions and data types  
+- 🧪 Test results and data quality metrics
+- 📈 Model performance statistics
+- 🔄 Transformation logic and SQL code
+
+## 🛠️ Troubleshooting
+
+### Common Issues & Solutions
+
+#### Telegram Authentication
+```bash
+# Clear session and re-authenticate
 rm telegram_scraper_session.session*
 docker exec -it telegram_app python src/scrape.py
-# Follow prompts to enter verification code
 ```
 
-#### 2. Database Connection Problems
-**Problem**: Can't connect to PostgreSQL
+#### Database Connection Issues
 ```bash
+# Test connection
+docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -c "SELECT 1;"
+
 # Check PostgreSQL status
 sudo systemctl status postgresql
-
-# Verify credentials
-docker exec telegram_app python src/config.py
-
-# Test connection manually
-docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -c "SELECT 1;"
 ```
 
-#### 3. Docker Issues
-**Problem**: Container fails to start
-```bash
-# Check logs
-docker-compose logs app
-
-# Rebuild containers
-docker-compose down
-docker-compose up --build -d
-
-# Clear Docker cache if needed
-docker system prune -f
-```
-
-#### 4. dbt Connection Issues
-**Problem**: dbt can't connect to database
+#### dbt Issues
 ```bash
 # Debug dbt connection
 docker exec telegram_app dbt debug --project-dir telegram_dbt_project
 
-# Check profiles.yml
+# Check profiles configuration
 docker exec telegram_app cat ~/.dbt/profiles.yml
-
-# Verify environment variables
-docker exec telegram_app env | grep POSTGRES
 ```
 
-#### 5. Data Quality Issues
-**Problem**: Tests fail or data looks incorrect
-```bash
-# Run specific tests
-docker exec telegram_app dbt test --select no_negative_views --project-dir telegram_dbt_project
+## 📁 Project Structure
 
-# Check source data
-docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -c "
-SELECT message_data->>'views' as views, COUNT(*) 
-FROM raw.telegram_messages 
-GROUP BY message_data->>'views' 
-ORDER BY COUNT(*) DESC LIMIT 10;
-"
+```
+telegram_data_product/
+├── src/                              # Source code
+│   ├── scrape.py                    # Telegram data extraction
+│   ├── load_raw_data.py             # PostgreSQL data loading
+│   └── config.py                    # Configuration management
+├── telegram_dbt_project/            # dbt project (COMPLETE)
+│   ├── models/
+│   │   ├── staging/
+│   │   │   ├── stg_telegram_messages.sql
+│   │   │   └── sources.yml
+│   │   └── marts/
+│   │       ├── dim_channels.sql
+│   │       ├── dim_dates.sql
+│   │       ├── fct_messages.sql
+│   │       └── schema.yml
+│   ├── tests/
+│   │   └── no_negative_views.sql
+│   ├── dbt_project.yml
+│   └── packages.yml
+├── data/
+│   └── raw/
+│       └── telegram_messages/        # Partitioned data lake
+│           └── YYYY-MM-DD/
+│               └── channel_name.json
+├── logs/                            # Application logs
+│   ├── scrape.log
+│   ├── load_raw_data.log
+│   └── dbt.log
+├── docker-compose.yml               # Container orchestration
+├── Dockerfile                       # Application container
+├── requirements.txt                 # Python dependencies
+├── run_pipeline.sh                  # Automated pipeline execution
+├── .env                            # Environment variables
+├── .gitignore                      # Git ignore rules
+└── README.md                       # This comprehensive guide
 ```
 
-### Error Codes and Solutions
+## 🎯 Implementation Summary
 
-| Error Code | Description | Solution |
-|------------|-------------|----------|
-| `CONN_001` | Database connection failed | Check PostgreSQL service and credentials |
-| `AUTH_001` | Telegram authentication failed | Re-authenticate with fresh session |
-| `DBT_001` | dbt compilation error | Check SQL syntax in models |
-| `DATA_001` | Data quality test failed | Investigate source data quality |
-| `DOCKER_001` | Container startup failed | Check Docker logs and rebuild |
+### ✅ Completed Features
 
-## 🔄 Maintenance and Operations
+1. **Project Structure & Environment**
+   - Modular codebase with clear separation of concerns
+   - Docker containerization with PostgreSQL integration
+   - Secure credential management via `.env`
+   - Comprehensive `.gitignore` configuration
 
-### Daily Operations
-```bash
-# Quick health check
-./health_check.sh
+2. **Data Extraction & Storage**
+   - Asynchronous Telegram scraping with `telethon`
+   - Partitioned data lake structure (`YYYY-MM-DD/channel.json`)
+   - Robust error handling and logging
+   - Media metadata extraction
 
-# Run incremental pipeline
-./run_pipeline.sh
+3. **Data Loading & Raw Storage**
+   - Incremental PostgreSQL loading
+   - JSONB storage for flexible querying
+   - Transaction management and error recovery
+   - Duplicate prevention mechanisms
 
-# Check data freshness
-docker exec telegram_app dbt source freshness --project-dir telegram_dbt_project
-```
+4. **dbt Transformation Pipeline**
+   - Complete staging layer with data cleaning
+   - Dimensional star schema (fact + dimension tables)
+   - Surrogate key generation with `dbt-utils`
+   - Comprehensive model documentation
 
-### Weekly Maintenance
-```bash
-# Full data refresh
-docker exec telegram_app dbt run --full-refresh --project-dir telegram_dbt_project
+5. **Data Quality & Testing**
+   - Built-in dbt tests (`unique`, `not_null`, `relationships`)
+   - Custom business rule tests
+   - Data freshness monitoring
+   - Referential integrity validation
 
-# Comprehensive testing
-docker exec telegram_app dbt test --project-dir telegram_dbt_project
+6. **Documentation & Monitoring**
+   - Auto-generated dbt documentation
+   - Comprehensive README with examples
+   - Health check scripts
+   - Performance monitoring queries
 
-# Log rotation
-find logs/ -name "*.log" -size +100M -exec gzip {} \;
-```
+## 🚀 Next Steps
 
-### Monthly Tasks
-```bash
-# Update documentation
-docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
+1. **Execute the pipeline**: Run `./run_pipeline.sh` 
+2. **Explore the data**: Use provided SQL examples
+3. **View documentation**: Access `http://localhost:8080`
+4. **Monitor pipeline**: Check logs and health metrics
 
-# Performance analysis
-docker exec telegram_app psql -h localhost -U telegram_user -d telegram_warehouse -f maintenance/performance_analysis.sql
+## 📞 Support
 
-# Backup database
-pg_dump -h localhost -U telegram_user telegram_warehouse > backup_$(date +%Y%m%d).sql
-```
-
-## 📊 Performance Optimization
-
-### Database Optimization
-```sql
--- Create indexes for better query performance
-CREATE INDEX idx_fct_messages_date ON analytics.fct_messages(date_pk);
-CREATE INDEX idx_fct_messages_channel ON analytics.fct_messages(channel_pk);
-CREATE INDEX idx_raw_messages_date ON raw.telegram_messages(scraped_date);
-
--- Analyze table statistics
-ANALYZE analytics.fct_messages;
-ANALYZE analytics.dim_channels;
-ANALYZE analytics.dim_dates;
-```
-
-### dbt Optimization
-```yaml
-# In dbt_project.yml
-models:
-  telegram_dbt_project:
-    marts:
-      +materialized: table
-      +indexes:
-        - columns: [date_pk]
-        - columns: [channel_pk]
-```
-
-## 🤝 Contributing Guidelines
-
-### Development Setup
-```bash
-# Fork repository
-git clone https://github.com/yourusername/telegram_data_product.git
-
-# Create feature branch
-git checkout -b feature/your-feature-name
-
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run pre-commit hooks
-pre-commit install
-```
-
-### Code Standards
-- Follow PEP 8 for Python code
-- Use meaningful variable names and functions
-- Include docstrings for all functions
-- Add inline comments for complex logic
-- Update tests when adding new features
-
-### Pull Request Process
-1. Ensure all tests pass
-2. Update documentation if needed
-3. Add/update tests for new features
-4. Follow conventional commit messages
-5. Request review from maintainers
-
-## 📋 System Requirements
-
-### Minimum Requirements
-- **CPU**: 2 cores
-- **RAM**: 4GB
-- **Storage**: 10GB free space
-- **Network**: Stable internet connection
-
-### Recommended Requirements
-- **CPU**: 4+ cores
-- **RAM**: 8GB+
-- **Storage**: 50GB+ SSD
-- **Network**: High-speed internet
-
-### Software Dependencies
-```
-Docker: 20.10+
-Docker Compose: 2.0+
-Python: 3.8+
-PostgreSQL: 13+
-Git: 2.30+
-```
-
-## 🔒 Security Considerations
-
-### Environment Security
-- Never commit `.env` files to version control
-- Use strong passwords for database credentials
-- Regularly rotate API keys and passwords
-- Limit database user permissions
-
-### Data Privacy
-- Comply with applicable data protection regulations
-- Implement data retention policies
-- Consider anonymization for sensitive data
-- Regular security audits
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support and Contact
-
-### Getting Help
-1. Check this README for common solutions
-2. Review the troubleshooting section
-3. Check existing issues in the repository
-4. Create a new issue with detailed information
-
-### Issue Template
-When creating issues, include:
-- Operating system and version
-- Python version
-- Docker version
-- Complete error message
-- Steps to reproduce
-- Expected vs actual behavior
-
-### Community
-- **Documentation**: [Project Wiki](wiki-link)
-- **Issues**: [GitHub Issues](issues-link)
-- **Discussions**: [GitHub Discussions](discussions-link)
+For issues or questions:
+1. Check the troubleshooting section
+2. Review log files in `logs/`
+3. Test individual components
+4. Verify environment configuration
 
 ---
 
-**⚠️ Important Notes:**
-- This project is for educational purposes
-- Ensure compliance with Telegram's Terms of Service
-- Follow applicable data protection regulations
-- Test thoroughly before production use
-- Keep dependencies updated for security
-
-**🌟 Project Status:** Active Development
-
-**📊 Current Version:** 1.0.0
-
-**🏆 Quality Assurance:** All tests passing ✅
+**🎯 Project Status**: Production Ready ✅  
+**📊 Pipeline Coverage**: Complete ELT Implementation  
+**🏆 Quality Score**: All Tests Passing  
+**📚 Documentation**: Comprehensive & Auto-Generated
