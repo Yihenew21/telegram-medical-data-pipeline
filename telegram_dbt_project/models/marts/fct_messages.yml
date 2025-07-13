@@ -1,0 +1,31 @@
+# models/marts/fct_messages.yml
+version: 2
+
+models:
+  - name: fct_messages
+    description: "Fact table containing Telegram message metrics and foreign keys to dimensions."
+    columns:
+      - name: message_id
+        description: "Unique identifier for the message."
+        tests:
+          - not_null # Message ID should always exist
+          # We might add a uniqueness test if message_id + channel_pk is unique across ALL messages
+      - name: channel_pk
+        description: "Foreign key to the dim_channels table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_pk
+      - name: date_pk
+        description: "Foreign key to the dim_dates table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_dates')
+              field: date_pk
+      - name: views_count
+        description: "Number of views for the message."
+        tests:
+          - not_null
+          # Add a custom test later to ensure views_count >= 0

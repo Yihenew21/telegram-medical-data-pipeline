@@ -1,0 +1,12 @@
+# models/marts/dim_dates.yml
+version: 2
+
+models:
+  - name: dim_dates
+    description: "Dimension table for date attributes."
+    columns:
+      - name: date_pk
+        description: "Primary key for the date dimension (YYYY-MM-DD)."
+        tests:
+          - unique
+          - not_null
