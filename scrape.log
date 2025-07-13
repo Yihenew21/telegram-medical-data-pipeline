@@ -84,3 +84,420 @@ OSError: [Errno 22] Invalid argument: 'C:\\Users\\hp\\Desktop\\projects\\10 Acad
 2025-07-11 03:16:32,725 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
 2025-07-11 03:16:32,737 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
 2025-07-11 03:16:32,743 - INFO - Telegram Data Scraping Process Finished.
+2025-07-13 04:21:26,738 - INFO - Starting Telegram Data Scraping Process.
+2025-07-13 04:21:26,802 - INFO - Connecting to Telegram...
+2025-07-13 04:21:26,802 - INFO - Connecting to 149.154.167.91:443/TcpFull...
+2025-07-13 04:21:26,934 - INFO - Connection to 149.154.167.91:443/TcpFull complete!
+2025-07-13 04:21:27,569 - INFO - Client not authorized. Sending authentication code...
+2025-07-13 04:22:09,071 - INFO - Client authorized successfully.
+2025-07-13 04:22:09,071 - INFO - Telegram client connected and authorized.
+2025-07-13 04:22:09,071 - INFO - Starting scraping for channel: @CheMed123
+2025-07-13 04:22:09,074 - INFO - Starting scraping for channel: @lobelia4cosmetics
+2025-07-13 04:22:09,074 - INFO - Starting scraping for channel: @tikvahpharma
+2025-07-13 04:22:09,297 - INFO - Resolved entity for @CheMed123: CheMed
+2025-07-13 04:22:09,297 - INFO - Resolved entity for @lobelia4cosmetics: Lobelia pharmacy and cosmetics
+2025-07-13 04:22:09,306 - INFO - Resolved entity for @tikvahpharma: Tikvah | Pharma
+2025-07-13 04:22:10,119 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:10,522 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:10,817 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:11,030 - INFO - Downloaded photo for message 18535 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18535_20250712143849.jpg
+2025-07-13 04:22:11,030 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:11,336 - INFO - Downloaded photo for message 97 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_97_20230210122306.jpg
+2025-07-13 04:22:11,338 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:12,018 - INFO - Downloaded photo for message 18534 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18534_20250712143637.jpg
+2025-07-13 04:22:12,018 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:12,455 - INFO - Downloaded photo for message 172367 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172367_20250712133217.jpg
+2025-07-13 04:22:12,461 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:12,518 - INFO - Downloaded photo for message 18533 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18533_20250712143603.jpg
+2025-07-13 04:22:12,518 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:12,660 - INFO - Downloaded photo for message 96 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_96_20230202085852.jpg
+2025-07-13 04:22:12,660 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:12,969 - INFO - Downloaded photo for message 172350 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172350_20250712095919.jpg
+2025-07-13 04:22:12,974 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:13,168 - INFO - Downloaded photo for message 18532 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18532_20250712054353.jpg
+2025-07-13 04:22:13,168 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:13,400 - INFO - Downloaded photo for message 95 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_95_20230201085937.jpg
+2025-07-13 04:22:13,401 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:13,660 - INFO - Downloaded photo for message 172345 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172345_20250712092215.jpg
+2025-07-13 04:22:13,666 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:14,194 - INFO - Downloaded photo for message 18531 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18531_20250712054352.jpg
+2025-07-13 04:22:14,195 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:14,351 - INFO - Downloaded photo for message 172307 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172307_20250712035858.jpg
+2025-07-13 04:22:14,351 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:14,684 - INFO - Downloaded photo for message 94 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_94_20230131091953.jpg
+2025-07-13 04:22:14,688 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:14,984 - INFO - Downloaded photo for message 18530 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18530_20250712054352.jpg
+2025-07-13 04:22:14,984 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:15,604 - INFO - Downloaded photo for message 18529 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18529_20250712054352.jpg
+2025-07-13 04:22:15,604 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:15,774 - INFO - Downloaded photo for message 172274 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172274_20250711171818.jpg
+2025-07-13 04:22:15,774 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:15,784 - INFO - Downloaded photo for message 93 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_93_20230130094525.jpg
+2025-07-13 04:22:15,784 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:15,836 - INFO - Downloaded photo for message 18528 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18528_20250712054352.jpg
+2025-07-13 04:22:15,836 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:16,158 - INFO - Downloaded photo for message 172273 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172273_20250711171818.jpg
+2025-07-13 04:22:16,158 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:16,740 - INFO - Downloaded photo for message 18527 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18527_20250711071205.jpg
+2025-07-13 04:22:16,740 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:17,091 - INFO - Downloaded photo for message 92 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_92_20230127071840.jpg
+2025-07-13 04:22:17,091 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:17,592 - INFO - Downloaded photo for message 18526 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18526_20250711071205.jpg
+2025-07-13 04:22:17,599 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:17,647 - INFO - Downloaded photo for message 172272 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172272_20250711171818.jpg
+2025-07-13 04:22:17,647 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:17,949 - INFO - Downloaded photo for message 91 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_91_20230126182753.jpg
+2025-07-13 04:22:17,953 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:18,151 - INFO - Downloaded photo for message 18525 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18525_20250711071205.jpg
+2025-07-13 04:22:18,151 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:19,086 - INFO - Downloaded photo for message 18524 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18524_20250711071205.jpg
+2025-07-13 04:22:19,086 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:19,392 - INFO - Downloaded photo for message 172263 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172263_20250711160656.jpg
+2025-07-13 04:22:19,392 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:19,549 - INFO - Downloaded photo for message 90 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_90_20230123103920.jpg
+2025-07-13 04:22:19,549 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:19,701 - INFO - Downloaded photo for message 18523 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18523_20250711071205.jpg
+2025-07-13 04:22:19,701 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:20,278 - INFO - Downloaded photo for message 172252 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172252_20250711150331.jpg
+2025-07-13 04:22:20,278 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:20,654 - INFO - Downloaded photo for message 18522 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18522_20250711040030.jpg
+2025-07-13 04:22:20,654 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:20,969 - INFO - Downloaded photo for message 172209 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172209_20250711090659.jpg
+2025-07-13 04:22:20,971 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:21,400 - INFO - Downloaded photo for message 18521 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18521_20250711040029.jpg
+2025-07-13 04:22:21,402 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:22,574 - INFO - Downloaded photo for message 172186 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172186_20250711072913.jpg
+2025-07-13 04:22:22,575 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:23,283 - INFO - Downloaded photo for message 18520 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18520_20250711040029.jpg
+2025-07-13 04:22:23,283 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:23,627 - INFO - Downloaded photo for message 172185 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172185_20250711072913.jpg
+2025-07-13 04:22:23,627 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:23,956 - INFO - Downloaded document for message 89 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\document_89.mp4
+2025-07-13 04:22:23,956 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:25,533 - INFO - Downloaded photo for message 18519 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18519_20250711040029.jpg
+2025-07-13 04:22:25,534 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:25,682 - INFO - Downloaded photo for message 172178 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172178_20250711062823.jpg
+2025-07-13 04:22:25,684 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:25,973 - INFO - Downloaded photo for message 88 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_88_20230117084312.jpg
+2025-07-13 04:22:25,974 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:26,071 - INFO - Downloaded photo for message 18518 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18518_20250711040029.jpg
+2025-07-13 04:22:26,072 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:26,325 - INFO - Downloaded photo for message 172172 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172172_20250711055834.jpg
+2025-07-13 04:22:26,327 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:26,865 - INFO - Downloaded photo for message 18517 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18517_20250710145022.jpg
+2025-07-13 04:22:26,868 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:27,305 - INFO - Downloaded photo for message 87 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_87_20230116134135.jpg
+2025-07-13 04:22:27,305 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:27,432 - INFO - Downloaded photo for message 18516 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18516_20250710144847.jpg
+2025-07-13 04:22:27,432 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:27,463 - INFO - Downloaded photo for message 172136 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172136_20250710160246.jpg
+2025-07-13 04:22:27,464 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:28,147 - INFO - Downloaded photo for message 18515 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18515_20250710144002.jpg
+2025-07-13 04:22:28,148 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:28,566 - INFO - Downloaded photo for message 86 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_86_20230116101342.jpg
+2025-07-13 04:22:28,567 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:28,611 - INFO - Downloaded photo for message 18514 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18514_20250710144002.jpg
+2025-07-13 04:22:28,612 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:28,717 - INFO - Downloaded photo for message 172135 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172135_20250710142508.jpg
+2025-07-13 04:22:28,725 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:28,853 - INFO - Downloaded photo for message 18513 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18513_20250710084212.jpg
+2025-07-13 04:22:28,853 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:29,292 - INFO - Downloaded photo for message 85 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_85_20230116092609.jpg
+2025-07-13 04:22:29,292 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:29,742 - INFO - Downloaded photo for message 18512 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18512_20250710084212.jpg
+2025-07-13 04:22:29,742 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:30,001 - INFO - Downloaded photo for message 82 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_82_20230113124847.jpg
+2025-07-13 04:22:30,002 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:30,233 - INFO - Downloaded photo for message 172123 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172123_20250710080848.jpg
+2025-07-13 04:22:30,233 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:30,350 - INFO - Downloaded photo for message 18511 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18511_20250710084212.jpg
+2025-07-13 04:22:30,350 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:30,972 - INFO - Downloaded photo for message 172122 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172122_20250710080848.jpg
+2025-07-13 04:22:30,972 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,117 - INFO - Downloaded photo for message 18510 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18510_20250710084212.jpg
+2025-07-13 04:22:31,117 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,186 - INFO - Downloaded photo for message 81 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_81_20230113094414.jpg
+2025-07-13 04:22:31,188 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,461 - INFO - Downloaded photo for message 172114 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172114_20250710055815.jpg
+2025-07-13 04:22:31,471 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,546 - INFO - Downloaded photo for message 18509 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18509_20250710084212.jpg
+2025-07-13 04:22:31,547 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,839 - INFO - Downloaded photo for message 80 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_80_20230106160621.jpg
+2025-07-13 04:22:31,839 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:31,955 - INFO - Downloaded photo for message 172113 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172113_20250710055815.jpg
+2025-07-13 04:22:31,955 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:32,219 - INFO - Downloaded photo for message 18508 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18508_20250710084212.jpg
+2025-07-13 04:22:32,221 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:32,665 - INFO - Downloaded photo for message 172112 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172112_20250710055815.jpg
+2025-07-13 04:22:32,668 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:32,714 - INFO - Downloaded photo for message 18507 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18507_20250710084212.jpg
+2025-07-13 04:22:32,714 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:33,133 - INFO - Downloaded photo for message 79 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_79_20230106093117.jpg
+2025-07-13 04:22:33,138 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:33,319 - INFO - Downloaded photo for message 172109 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172109_20250710052801.jpg
+2025-07-13 04:22:33,322 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:33,608 - INFO - Downloaded photo for message 18506 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18506_20250710082514.jpg
+2025-07-13 04:22:33,608 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:34,390 - INFO - Downloaded photo for message 18505 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18505_20250710082514.jpg
+2025-07-13 04:22:34,399 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:34,518 - INFO - Downloaded photo for message 78 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_78_20230106060501.jpg
+2025-07-13 04:22:34,519 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:34,589 - INFO - Downloaded photo for message 172100 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172100_20250709151050.jpg
+2025-07-13 04:22:34,592 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:34,904 - INFO - Downloaded photo for message 18504 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18504_20250710082513.jpg
+2025-07-13 04:22:34,905 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:35,715 - INFO - Downloaded photo for message 18503 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18503_20250710082513.jpg
+2025-07-13 04:22:35,715 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:35,741 - INFO - Downloaded photo for message 172099 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172099_20250709131822.jpg
+2025-07-13 04:22:35,745 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:35,938 - INFO - Downloaded photo for message 77 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_77_20230104055802.jpg
+2025-07-13 04:22:35,940 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:36,140 - INFO - Downloaded photo for message 18502 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18502_20250710082513.jpg
+2025-07-13 04:22:36,140 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:36,938 - INFO - Downloaded photo for message 18501 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18501_20250710082513.jpg
+2025-07-13 04:22:36,938 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:37,151 - INFO - Downloaded photo for message 172095 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172095_20250709085306.jpg
+2025-07-13 04:22:37,151 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:37,156 - INFO - Downloaded photo for message 76 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_76_20230103174948.jpg
+2025-07-13 04:22:37,156 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:37,364 - INFO - Downloaded photo for message 18500 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18500_20250710054208.jpg
+2025-07-13 04:22:37,364 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:37,460 - INFO - Downloaded photo for message 172093 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172093_20250709083422.jpg
+2025-07-13 04:22:37,466 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:38,054 - INFO - Downloaded photo for message 18499 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18499_20250710054208.jpg
+2025-07-13 04:22:38,056 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:38,375 - INFO - Downloaded photo for message 75 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_75_20230103054834.jpg
+2025-07-13 04:22:38,375 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:38,601 - INFO - Downloaded photo for message 18498 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18498_20250710054208.jpg
+2025-07-13 04:22:38,601 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:38,736 - INFO - Downloaded photo for message 172092 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_172092_20250709082356.jpg
+2025-07-13 04:22:38,745 - INFO - Finished scraping 100 messages from @tikvahpharma.
+2025-07-13 04:22:38,745 - INFO - Data for @tikvahpharma saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-13\@tikvahpharma.json
+2025-07-13 04:22:39,108 - INFO - Downloaded photo for message 18497 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18497_20250710054208.jpg
+2025-07-13 04:22:39,108 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:39,333 - INFO - Downloaded photo for message 74 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_74_20230102070255.jpg
+2025-07-13 04:22:39,333 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:39,680 - INFO - Downloaded photo for message 18496 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18496_20250710054208.jpg
+2025-07-13 04:22:39,680 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:39,913 - INFO - Downloaded document for message 73 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\document_73.mp4
+2025-07-13 04:22:39,920 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:40,115 - INFO - Downloaded photo for message 18495 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18495_20250710054208.jpg
+2025-07-13 04:22:40,115 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:40,609 - INFO - Downloaded photo for message 18494 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18494_20250710054208.jpg
+2025-07-13 04:22:40,610 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:40,680 - INFO - Downloaded photo for message 71 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_71_20221230154535.jpg
+2025-07-13 04:22:40,680 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:40,855 - INFO - Downloaded photo for message 18493 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18493_20250710054208.jpg
+2025-07-13 04:22:40,855 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:41,292 - INFO - Downloaded photo for message 18492 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18492_20250710054208.jpg
+2025-07-13 04:22:41,292 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:41,474 - INFO - Downloaded photo for message 70 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_70_20221228170208.jpg
+2025-07-13 04:22:41,474 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:42,393 - INFO - Downloaded photo for message 18491 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18491_20250710054208.jpg
+2025-07-13 04:22:42,393 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:42,529 - INFO - Downloaded photo for message 67 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_67_20221228063150.jpg
+2025-07-13 04:22:42,529 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:43,596 - INFO - Downloaded photo for message 18490 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18490_20250710054208.jpg
+2025-07-13 04:22:43,596 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:43,793 - INFO - Downloaded photo for message 64 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_64_20221227170632.jpg
+2025-07-13 04:22:43,793 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:43,839 - INFO - Downloaded photo for message 18489 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18489_20250710054208.jpg
+2025-07-13 04:22:43,839 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:44,734 - INFO - Downloaded photo for message 18488 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18488_20250710054207.jpg
+2025-07-13 04:22:44,734 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:45,250 - INFO - Downloaded photo for message 18487 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18487_20250710054207.jpg
+2025-07-13 04:22:45,250 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:46,201 - INFO - Downloaded photo for message 18486 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18486_20250710054207.jpg
+2025-07-13 04:22:46,202 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:46,928 - INFO - Downloaded photo for message 18485 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18485_20250709130851.jpg
+2025-07-13 04:22:46,928 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:47,502 - INFO - Downloaded photo for message 18484 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18484_20250709053954.jpg
+2025-07-13 04:22:47,502 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:48,387 - INFO - Downloaded photo for message 18483 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18483_20250709053954.jpg
+2025-07-13 04:22:48,387 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:48,913 - INFO - Downloaded photo for message 18482 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18482_20250709053954.jpg
+2025-07-13 04:22:48,913 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:50,312 - INFO - Downloaded photo for message 18481 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18481_20250709053954.jpg
+2025-07-13 04:22:50,312 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:50,941 - INFO - Downloaded document for message 62 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\document_62.mp4
+2025-07-13 04:22:50,941 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:51,469 - INFO - Downloaded photo for message 60 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_60_20221223062615.jpg
+2025-07-13 04:22:51,469 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:51,564 - INFO - Downloaded photo for message 18480 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18480_20250709053954.jpg
+2025-07-13 04:22:51,564 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:51,980 - INFO - Downloaded photo for message 59 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_59_20221222064025.jpg
+2025-07-13 04:22:51,980 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:52,036 - INFO - Downloaded photo for message 18479 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18479_20250709053953.jpg
+2025-07-13 04:22:52,036 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:52,351 - INFO - Downloaded photo for message 58 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_58_20221222031126.jpg
+2025-07-13 04:22:52,351 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:52,643 - INFO - Downloaded photo for message 18478 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18478_20250709053953.jpg
+2025-07-13 04:22:52,643 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:53,105 - INFO - Downloaded photo for message 18477 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18477_20250709053953.jpg
+2025-07-13 04:22:53,113 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:53,210 - INFO - Downloaded photo for message 56 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_56_20221220172505.jpg
+2025-07-13 04:22:53,210 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:54,059 - INFO - Downloaded photo for message 18476 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18476_20250709053953.jpg
+2025-07-13 04:22:54,059 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:54,419 - INFO - Downloaded photo for message 55 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_55_20221220112859.jpg
+2025-07-13 04:22:54,419 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:54,621 - INFO - Downloaded photo for message 18475 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18475_20250709053953.jpg
+2025-07-13 04:22:54,621 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:55,116 - INFO - Downloaded photo for message 18474 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18474_20250709053953.jpg
+2025-07-13 04:22:55,116 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:55,127 - INFO - Downloaded photo for message 53 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_53_20221220074133.jpg
+2025-07-13 04:22:55,127 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:55,373 - INFO - Downloaded photo for message 18473 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18473_20250709053953.jpg
+2025-07-13 04:22:55,373 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:55,585 - INFO - Downloaded photo for message 52 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_52_20221216122101.jpg
+2025-07-13 04:22:55,588 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:55,674 - INFO - Downloaded photo for message 18472 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18472_20250709053953.jpg
+2025-07-13 04:22:55,674 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:56,131 - INFO - Downloaded photo for message 50 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_50_20221213055518.jpg
+2025-07-13 04:22:56,142 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:56,340 - INFO - Downloaded photo for message 18471 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18471_20250709053953.jpg
+2025-07-13 04:22:56,340 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:56,828 - INFO - Downloaded photo for message 49 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_49_20221209122853.jpg
+2025-07-13 04:22:56,829 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:56,906 - INFO - Downloaded photo for message 18470 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18470_20250709053953.jpg
+2025-07-13 04:22:56,906 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:57,906 - INFO - Downloaded photo for message 18469 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18469_20250709053953.jpg
+2025-07-13 04:22:57,906 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:58,226 - INFO - Downloaded photo for message 48 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_48_20221209040949.jpg
+2025-07-13 04:22:58,226 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:58,495 - INFO - Downloaded photo for message 18468 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18468_20250709053953.jpg
+2025-07-13 04:22:58,497 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:58,801 - INFO - Downloaded photo for message 46 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_46_20221207064348.jpg
+2025-07-13 04:22:58,801 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:59,091 - INFO - Downloaded photo for message 18467 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18467_20250709053953.jpg
+2025-07-13 04:22:59,092 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:59,386 - INFO - Downloaded photo for message 45 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_45_20221205055722.jpg
+2025-07-13 04:22:59,386 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:22:59,431 - INFO - Downloaded photo for message 18466 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18466_20250709053953.jpg
+2025-07-13 04:22:59,431 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:00,021 - INFO - Downloaded photo for message 44 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_44_20221204123518.jpg
+2025-07-13 04:23:00,021 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:00,076 - INFO - Downloaded photo for message 18465 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18465_20250709053953.jpg
+2025-07-13 04:23:00,077 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:00,596 - INFO - Downloaded photo for message 43 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_43_20221202134441.jpg
+2025-07-13 04:23:00,596 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:00,762 - INFO - Downloaded photo for message 18464 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18464_20250708125023.jpg
+2025-07-13 04:23:00,763 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:01,516 - INFO - Downloaded photo for message 18463 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18463_20250708125023.jpg
+2025-07-13 04:23:01,516 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:01,547 - INFO - Downloaded photo for message 41 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_41_20221202060612.jpg
+2025-07-13 04:23:01,548 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:01,933 - INFO - Downloaded photo for message 18462 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18462_20250708125023.jpg
+2025-07-13 04:23:01,933 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:02,166 - INFO - Downloaded photo for message 40 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_40_20221201064722.jpg
+2025-07-13 04:23:02,167 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:02,603 - INFO - Downloaded photo for message 18461 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18461_20250708125023.jpg
+2025-07-13 04:23:02,605 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:02,818 - INFO - Downloaded photo for message 39 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_39_20221130063144.jpg
+2025-07-13 04:23:02,819 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:03,091 - INFO - Downloaded photo for message 18460 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18460_20250708125022.jpg
+2025-07-13 04:23:03,092 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:03,404 - INFO - Downloaded photo for message 38 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_38_20221129074306.jpg
+2025-07-13 04:23:03,404 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:03,658 - INFO - Downloaded photo for message 18459 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18459_20250708125022.jpg
+2025-07-13 04:23:03,660 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:03,890 - INFO - Downloaded photo for message 34 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_34_20221122081547.jpg
+2025-07-13 04:23:03,890 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:04,115 - INFO - Downloaded photo for message 18458 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18458_20250708125022.jpg
+2025-07-13 04:23:04,117 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:04,664 - INFO - Downloaded photo for message 18457 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18457_20250708125022.jpg
+2025-07-13 04:23:04,666 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:04,702 - INFO - Downloaded photo for message 33 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_33_20221115115116.jpg
+2025-07-13 04:23:04,703 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:05,133 - INFO - Downloaded photo for message 18456 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18456_20250708125022.jpg
+2025-07-13 04:23:05,133 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:05,438 - INFO - Downloaded photo for message 32 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_32_20221115081741.jpg
+2025-07-13 04:23:05,438 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:05,658 - INFO - Downloaded photo for message 18455 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18455_20250708125022.jpg
+2025-07-13 04:23:05,664 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:05,947 - INFO - Downloaded photo for message 31 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_31_20221115052441.jpg
+2025-07-13 04:23:05,949 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:06,291 - INFO - Downloaded photo for message 18454 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18454_20250708125022.jpg
+2025-07-13 04:23:06,291 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:06,464 - INFO - Downloaded photo for message 30 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_30_20221109085325.jpg
+2025-07-13 04:23:06,464 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:06,503 - INFO - Downloaded photo for message 18453 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18453_20250708125022.jpg
+2025-07-13 04:23:06,505 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:07,179 - INFO - Downloaded photo for message 18452 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18452_20250708061743.jpg
+2025-07-13 04:23:07,179 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:07,554 - INFO - Downloaded photo for message 29 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_29_20221029202628.jpg
+2025-07-13 04:23:07,554 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:07,641 - INFO - Downloaded photo for message 18451 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18451_20250708061743.jpg
+2025-07-13 04:23:07,641 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:08,003 - INFO - Downloaded photo for message 27 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_27_20221028091509.jpg
+2025-07-13 04:23:08,003 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:08,068 - INFO - Downloaded photo for message 18450 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18450_20250708061742.jpg
+2025-07-13 04:23:08,071 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:08,492 - INFO - Downloaded photo for message 18449 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18449_20250708061742.jpg
+2025-07-13 04:23:08,503 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:08,957 - INFO - Downloaded photo for message 18448 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18448_20250708061742.jpg
+2025-07-13 04:23:08,959 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:09,247 - INFO - Downloaded photo for message 26 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_26_20221028064936.jpg
+2025-07-13 04:23:09,257 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:09,311 - INFO - Downloaded photo for message 18446 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18446_20250708061742.jpg
+2025-07-13 04:23:09,311 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:09,690 - INFO - Downloaded photo for message 25 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_25_20221024093419.jpg
+2025-07-13 04:23:09,690 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:09,892 - INFO - Downloaded photo for message 18445 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18445_20250708061742.jpg
+2025-07-13 04:23:09,892 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:10,244 - INFO - Downloaded photo for message 23 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_23_20221020122401.jpg
+2025-07-13 04:23:10,244 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:10,643 - INFO - Downloaded photo for message 18444 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18444_20250708061742.jpg
+2025-07-13 04:23:10,650 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:10,811 - INFO - Downloaded photo for message 22 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_22_20221018075736.jpg
+2025-07-13 04:23:10,811 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:11,192 - INFO - Downloaded photo for message 18443 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18443_20250708061742.jpg
+2025-07-13 04:23:11,192 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:11,423 - INFO - Downloaded photo for message 21 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_21_20221017140240.jpg
+2025-07-13 04:23:11,424 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:11,563 - INFO - Downloaded photo for message 18442 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18442_20250708061742.jpg
+2025-07-13 04:23:11,564 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:12,485 - INFO - Downloaded photo for message 20 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_20_20221012141452.jpg
+2025-07-13 04:23:12,485 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:12,851 - INFO - Downloaded photo for message 18441 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18441_20250708061742.jpg
+2025-07-13 04:23:12,851 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:13,243 - INFO - Downloaded photo for message 18440 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18440_20250708061742.jpg
+2025-07-13 04:23:13,246 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:13,587 - INFO - Downloaded photo for message 19 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_19_20221012141419.jpg
+2025-07-13 04:23:13,587 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:13,648 - INFO - Downloaded photo for message 18439 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18439_20250708061742.jpg
+2025-07-13 04:23:13,649 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:14,104 - INFO - Downloaded photo for message 18 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18_20221006092346.jpg
+2025-07-13 04:23:14,106 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:14,172 - INFO - Downloaded photo for message 18438 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18438_20250708061742.jpg
+2025-07-13 04:23:14,172 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:14,632 - INFO - Downloaded photo for message 17 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_17_20221003051630.jpg
+2025-07-13 04:23:14,632 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:14,747 - INFO - Downloaded photo for message 18437 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18437_20250708061742.jpg
+2025-07-13 04:23:14,753 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:15,344 - INFO - Downloaded photo for message 15 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_15_20220930073342.jpg
+2025-07-13 04:23:15,348 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:15,401 - INFO - Downloaded photo for message 18436 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18436_20250707100250.jpg
+2025-07-13 04:23:15,402 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:16,073 - INFO - Downloaded photo for message 18435 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_18435_20250707100250.jpg
+2025-07-13 04:23:16,073 - INFO - Finished scraping 100 messages from @lobelia4cosmetics.
+2025-07-13 04:23:16,078 - INFO - Data for @lobelia4cosmetics saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-13\@lobelia4cosmetics.json
+2025-07-13 04:23:16,306 - INFO - Downloaded photo for message 14 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_14_20220928054531.jpg
+2025-07-13 04:23:16,306 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:17,339 - INFO - Downloaded photo for message 13 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_13_20220916074231.jpg
+2025-07-13 04:23:17,340 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:18,253 - INFO - Downloaded photo for message 11 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_11_20220910155525.jpg
+2025-07-13 04:23:18,253 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:19,041 - INFO - Downloaded photo for message 10 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_10_20220907091640.jpg
+2025-07-13 04:23:19,049 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:19,329 - INFO - Downloaded photo for message 9 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_9_20220906042615.jpg
+2025-07-13 04:23:19,335 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:19,581 - INFO - Downloaded photo for message 3 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_3_20220905100205.jpg
+2025-07-13 04:23:19,581 - INFO - Starting direct file download in chunks of 131072 at 0, stride 131072
+2025-07-13 04:23:20,049 - INFO - Downloaded photo for message 2 to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_media\photo_2_20220905095709.jpg
+2025-07-13 04:23:20,049 - INFO - Finished scraping 76 messages from @CheMed123.
+2025-07-13 04:23:20,055 - INFO - Data for @CheMed123 saved to: C:\Users\hp\Desktop\projects\10 Acadamy -KAIM5\telegram-medical-data-pipeline\src\../data/raw/telegram_messages\2025-07-13\@CheMed123.json
+2025-07-13 04:23:20,055 - INFO - Disconnecting Telegram client.
+2025-07-13 04:23:20,055 - INFO - Disconnecting from 149.154.167.91:443/TcpFull...
+2025-07-13 04:23:20,056 - INFO - Disconnection from 149.154.167.91:443/TcpFull complete!
+2025-07-13 04:23:20,065 - INFO - Telegram Data Scraping Process Finished.
