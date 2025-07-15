@@ -3,7 +3,9 @@ telethon
 psycopg2-binary
 dbt-postgres  # <--- Add this line
 ultralytics
-# fastapi
-# uvicorn
+fastapi  
+uvicorn 
+sqlalchemy # We'll need this for database interaction
+pydantic # FastAPI uses Pydantic for data validation
 # dagster
 # dagster-webserver

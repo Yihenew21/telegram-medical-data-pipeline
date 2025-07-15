@@ -21,7 +21,7 @@ RUN apt-get update && \
 
 # Copy requirements.txt and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=600 -r requirements.txt # ADD --default-timeout=600
 
 # Copy the rest of your application code to the container
 COPY . .

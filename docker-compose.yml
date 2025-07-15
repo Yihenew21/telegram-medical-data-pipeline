@@ -4,24 +4,44 @@ services:
   app:
     build: .
     container_name: telegram_app
-    command: tail -F /dev/null
+    command: tail -F /dev/null # Keep container running for manual execution
 
-    working_dir: /app/telegram_dbt_project # <--- ADD THIS LINE
+    working_dir: /app/telegram_dbt_project # Your original working_dir for dbt
 
     volumes:
-      - .:/app
-      - ./data/raw:/app/data/raw
-      - ~/.dbt:/root/.dbt
-      # NEW: Mount the telegram_media directory
-      - ./data/raw/telegram_media:/app/data/raw/telegram_media
+      - .:/app # Mount the entire project root to /app
+      - ./data/raw:/app/data/raw # Explicitly mount raw data if you prefer
+      - ~/.dbt:/root/.dbt # For dbt profiles
+      - ./data/raw/telegram_media:/app/data/raw/telegram_media # Your NEW mount for media
+      # Ensure your .env is accessible for app as well if needed
+      - ./.env:/app/.env
     ports:
-      - "8080:8080"
+      - "8080:8080" # Your existing port exposure (if any app uses it)
 
     env_file:
-      - ./.env
+      - ./.env # Ensure env variables are passed
 
     networks:
-      - telegram_network
+      - telegram_network # Connect to your existing network
+
+  fastapi_app: # <-- NEW SERVICE FOR FASTAPI
+    build:
+      context: . # Build context is the project root (where Dockerfile is)
+      dockerfile: Dockerfile # Use the same Dockerfile to ensure all dependencies are built
+    container_name: telegram_api
+    ports:
+      - "8000:8000" # Expose FastAPI on port 8000
+    volumes:
+      - ./my_project:/app/my_project # Mount your FastAPI project code
+      - ./.env:/app/.env # Mount .env for database credentials
+    working_dir: /app/my_project # Set working directory to your FastAPI app's root
+    networks:
+      - telegram_network # Connect to the same network as your 'app' service
+    # IMPORTANT: Since 'postgres' service is not defined in *this* docker-compose.yml,
+    # we don't use 'depends_on: postgres'. The FastAPI app will connect to the DB
+    # using the POSTGRES_HOST specified in your .env file, assuming it's reachable
+    # on the network (e.g., if 'POSTGRES_HOST=localhost' or a specific IP/hostname).
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload # Command to run Uvicorn
 
 networks:
   telegram_network:
