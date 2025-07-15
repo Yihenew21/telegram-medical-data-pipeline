@@ -7,5 +7,5 @@ fastapi
 uvicorn 
 sqlalchemy # We'll need this for database interaction
 pydantic # FastAPI uses Pydantic for data validation
-# dagster
-# dagster-webserver
+dagster
+dagster-webserver

@@ -1,68 +1,62 @@
-# Telegram Data Engineering Project
+# Telegram Medical Data Product Pipeline
 
-A comprehensive ELT (Extract, Load, Transform) data pipeline that collects Telegram channel messages, stores them in a data lake, loads them into a PostgreSQL data warehouse, and transforms them into an analytical star schema using dbt.
+A comprehensive end-to-end data engineering pipeline that scrapes medical-related Telegram channels, enriches the data with AI-powered object detection, and provides analytical insights through a robust API.
 
-## 🏗️ Architecture Overview
+## 🚀 Features
 
-```
-Telegram API → Raw Data Lake → PostgreSQL (Raw) → dbt Transformations → Analytics Schema
-     ↓              ↓              ↓                    ↓
-  scrape.py    JSON Files    load_raw_data.py    Star Schema Tables
-```
+- **Data Collection**: Automated scraping of Telegram channels with rate limiting and error handling
+- **AI Enhancement**: YOLOv8 object detection for image analysis and content enrichment
+- **Data Transformation**: dbt-powered ELT pipeline with dimensional modeling
+- **API Layer**: FastAPI endpoints for analytical queries and reporting
+- **Orchestration**: Dagster-based pipeline scheduling and monitoring
+- **Containerization**: Full Docker support for reproducible deployments
 
-## 🎯 Project Objectives
+## 🏗️ Architecture
 
-- **Extract**: Scrape message data from public Telegram channels using Telethon
-- **Load**: Store raw data in partitioned JSON files and PostgreSQL raw schema
-- **Transform**: Create dimensional star schema for analytics using dbt
-- **Quality**: Implement comprehensive testing and documentation
-
-## 📊 Data Model
-
-### Star Schema Design
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   dim_channels  │    │   fct_messages  │    │   dim_dates     │
-├─────────────────┤    ├─────────────────┤    ├─────────────────┤
-│ channel_pk (PK) │◄───┤ channel_pk (FK) │───►│ date_pk (PK)    │
-│ channel_username│    │ date_pk (FK)    │    │ scraped_date    │
-│ channel_title   │    │ message_id      │    │ year            │
-│ channel_type    │    │ message_text    │    │ month           │
-└─────────────────┘    │ views_count     │    │ quarter         │
-                       │ forwards_count  │    │ day_of_week     │
-                       │ replies_count   │    └─────────────────┘
-                       │ media_type      │
-                       │ created_at      │
-                       └─────────────────┘
+│   Telegram      │    │   YOLO Object   │    │   PostgreSQL    │
+│   Scraper       │───▶│   Detection     │───▶│   Data Lake     │
+│   (Telethon)    │    │   (YOLOv8)      │    │   (Raw Schema)  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                                        │
+                                                        ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   FastAPI       │    │   dbt           │    │   Analytics     │
+│   Endpoints     │◀───│   Transformations│◀───│   Schema        │
+│   (Analytics)   │    │   (Star Schema) │    │   (Fact/Dim)    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                ▲
+                                │
+                    ┌─────────────────┐
+                    │   Dagster       │
+                    │   Orchestration │
+                    │   & Monitoring  │
+                    └─────────────────┘
 ```
 
-## 🚀 Quick Start
+## 📋 Prerequisites
 
-### Prerequisites
+- Python 3.12+
+- PostgreSQL 13+
 - Docker & Docker Compose
-- Python 3.8+
-- PostgreSQL (local installation)
 - Telegram API credentials
+- Git
 
-### 1. Clone Repository
+## 🛠️ Installation
+
+### 1. Clone the Repository
+
 ```bash
-git clone <repository-url>
+git clone https://github.com/yourusername/telegram_data_product.git
 cd telegram_data_product
 ```
 
 ### 2. Environment Setup
+
+Create a `.env` file with your credentials:
+
 ```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 3. Configure Environment Variables
-Create `.env` file in project root:
-```env
 # Telegram API Configuration
 TELEGRAM_API_ID=your_api_id
 TELEGRAM_API_HASH=your_api_hash
@@ -71,279 +65,510 @@ PHONE_NUMBER=your_phone_number
 # PostgreSQL Configuration
 POSTGRES_DB=telegram_warehouse
 POSTGRES_USER=telegram_user
-POSTGRES_PASSWORD=your_password
+POSTGRES_PASSWORD=your_secure_password
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 ```
 
-### 4. Database Setup
+### 3. Docker Setup
+
 ```bash
-# Connect to PostgreSQL
-psql -U postgres
-
-# Create database and user
-CREATE DATABASE telegram_warehouse;
-CREATE USER telegram_user WITH PASSWORD 'your_password';
-GRANT ALL PRIVILEGES ON DATABASE telegram_warehouse TO telegram_user;
-```
-
-### 5. Run the Pipeline
-
-#### Option A: Using Docker (Recommended)
-```bash
-# Build and start containers
+# Build and start the application
 docker-compose up --build -d
 
-# Execute scraping
-docker exec telegram_app python src/scrape.py
-
-# Load raw data to PostgreSQL
-docker exec telegram_app python src/load_raw_data.py
-
-# Run dbt transformations
-docker exec telegram_app dbt run --project-dir telegram_dbt_project
-
-# Run dbt tests
-docker exec telegram_app dbt test --project-dir telegram_dbt_project
+# Verify containers are running
+docker-compose ps
 ```
 
-#### Option B: Local Development
+### 4. Database Initialization
+
 ```bash
+# Set up PostgreSQL database and user
+psql -U postgres -c "CREATE DATABASE telegram_warehouse;"
+psql -U postgres -c "CREATE USER telegram_user WITH PASSWORD 'your_secure_password';"
+psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE telegram_warehouse TO telegram_user;"
+```
+
+## 📊 Data Collection Pipeline
+
+### Telegram Data Scraping
+
+The pipeline uses Telethon to scrape data from public Telegram channels:
+
+```python
+# Target channels configuration
+TARGET_CHANNELS = [
+    "medicalchannel1",
+    "healthnews",
+    "pharmainfo"
+]
+```
+
+**Features:**
+- Asynchronous scraping for optimal performance
+- Date-based partitioning (`YYYY-MM-DD` format)
+- Comprehensive logging with `scrape.log`
+- Rate limiting and error handling
+- Media download and processing
+
+**File Structure:**
+```
+data/raw/telegram_messages/
+├── 2024-01-15/
+│   ├── medicalchannel1.json
+│   └── healthnews.json
+└── 2024-01-16/
+    └── pharmainfo.json
+```
+
+### Usage
+
+```bash
+# Manual scraping
+docker exec telegram_app python src/scrape.py
+
+# View logs
+docker exec telegram_app tail -f scrape.log
+```
+
+## 🤖 AI-Powered Object Detection
+
+### YOLOv8 Integration
+
+The pipeline integrates YOLOv8 for automatic object detection in scraped images:
+
+```python
+# Object detection processing
+python src/yolo_detector.py
+```
+
+**Capabilities:**
+- Pre-trained YOLOv8n model for object detection
+- Confidence score extraction
+- Bounding box coordinate capture
+- Medical product identification
+- Batch processing of media files
+
+**Detection Output:**
+```json
+{
+    "message_id": "12345",
+    "detected_object_class": "bottle",
+    "confidence_score": 0.85,
+    "box_coordinates": [100, 150, 200, 300]
+}
+```
+
+## 🔄 Data Transformation (dbt)
+
+### Star Schema Design
+
+The dbt project implements a dimensional star schema optimized for analytics:
+
+```sql
+-- Staging Layer
+models/staging/
+├── stg_telegram_messages.sql
+└── stg_yolo_detections.sql
+
+-- Data Marts
+models/marts/
+├── dim_channels.sql
+├── dim_dates.sql
+├── fct_messages.sql
+└── fct_image_detections.sql
+```
+
+#### Star Schema Architecture
+
+```
+                    ┌─────────────────────────────────────┐
+                    │            dim_dates                │
+                    │_____________________________________│
+                    │  • date_pk (PK)                     │
+                    │  • date_value                       │
+                    │  • day_of_week                      │
+                    │  • day_of_month                     │
+                    │  • day_of_year                      │
+                    │  • week_of_year                     │
+                    │  • month_name                       │
+                    │  • month_number                     │
+                    │  • quarter                          │
+                    │  • year                             │
+                    │  • is_weekend                       │
+                    └─────────────────────────────────────┘
+                                        │
+                                        │
+                                        ▼
+┌─────────────────────────────────────┐ │ ┌─────────────────────────────────────┐
+│           dim_channels              │ │ │          fct_messages               │
+│_____________________________________│ │ │_____________________________________│
+│  • channel_pk (PK)                  │◄┼─┤  • message_id (PK)                  │
+│  • channel_username                 │ │ │  • channel_pk (FK)                  │
+│  • channel_title                    │ │ │  • date_pk (FK)                     │
+│  • channel_description              │ │ │  • message_text                     │
+│  • channel_type                     │ │ │  • views_count                      │
+│  • is_verified                      │ │ │  • forwards_count                   │
+│  • subscriber_count                 │ │ │  • replies_count                    │
+│  • created_date                     │ │ │  • message_timestamp_utc            │
+└─────────────────────────────────────┘ │ │  • has_media                        │
+                                        │ │  • media_type                       │
+                                        │ │  • is_photo                         │
+                                        │ │  • is_document                      │
+                                        │ │  • file_size                        │
+                                        │ │  • file_name                        │
+                                        │ └─────────────────────────────────────┘
+                                        │                   │
+                                        │                   │
+                                        │                   ▼
+                                        │ ┌─────────────────────────────────────┐
+                                        │ │      fct_image_detections           │
+                                        │ │_____________________________________│
+                                        └─┤  • yolo_detection_key (PK)          │
+                                          │  • message_id (FK)                  │
+                                          │  • detected_object_class            │
+                                          │  • confidence_score                 │
+                                          │  • box_top_left_x                   │
+                                          │  • box_top_left_y                   │
+                                          │  • box_width                        │
+                                          │  • box_height                       │
+                                          │  • detection_timestamp              │
+                                          │  • file_name                        │
+                                          └─────────────────────────────────────┘
+```
+
+#### Schema Relationships
+
+**Primary Fact Tables:**
+- `fct_messages`: Core messaging metrics and content analysis
+- `fct_image_detections`: AI-powered object detection results
+
+**Dimension Tables:**
+- `dim_channels`: Channel metadata and characteristics
+- `dim_dates`: Time-based dimensional attributes
+
+**Key Relationships:**
+- `fct_messages.channel_pk` → `dim_channels.channel_pk`
+- `fct_messages.date_pk` → `dim_dates.date_pk`
+- `fct_image_detections.message_id` → `fct_messages.message_id`
+
+### Model Layers
+
+**Staging Layer:**
+- Data cleansing and type casting
+- NULL value handling
+- Column standardization
+
+**Dimensional Layer:**
+- `dim_channels`: Channel metadata and attributes
+- `dim_dates`: Time dimension with date hierarchies
+- `fct_messages`: Message-level metrics and content
+- `fct_image_detections`: AI detection results with confidence scores
+
+### Data Quality Tests
+
+```yaml
+# Built-in tests
+tests:
+  - unique
+  - not_null
+  - relationships
+
+# Custom business rules
+tests/no_negative_views.sql
+```
+
+### dbt Commands
+
+```bash
+# Run transformations
+docker exec telegram_app dbt run
+
+# Test data quality
+docker exec telegram_app dbt test
+
+# Generate documentation
+docker exec telegram_app dbt docs generate
+docker exec telegram_app dbt docs serve --port 8080
+```
+
+## 🚀 API Endpoints
+
+### FastAPI Application
+
+The API provides analytical endpoints built with FastAPI and Pydantic validation:
+
+```python
+# Start the API server
+uvicorn my_project.main:app --host 0.0.0.0 --port 8000
+```
+
+### Available Endpoints
+
+#### 1. Top Products Analysis
+```http
+GET /api/reports/top-products?limit=10
+```
+
+**Response:**
+```json
+{
+  "products": [
+    {
+      "detected_object_class": "bottle",
+      "detection_count": 156,
+      "confidence_avg": 0.87
+    }
+  ]
+}
+```
+
+#### 2. Channel Activity Analysis
+```http
+GET /api/channels/{channel_username}/activity
+```
+
+**Response:**
+```json
+{
+  "channel_username": "medicalchannel1",
+  "activity_date": "2024-01-15",
+  "message_count": 45,
+  "total_views": 12500,
+  "total_forwards": 230,
+  "messages_with_media": 12
+}
+```
+
+#### 3. Message Search
+```http
+GET /api/search/messages?query=paracetamol
+```
+
+**Response:**
+```json
+{
+  "messages": [
+    {
+      "message_id": "12345",
+      "message_text": "New paracetamol research findings...",
+      "views_count": 1200,
+      "channel_username": "medicalchannel1"
+    }
+  ]
+}
+```
+
+### API Documentation
+
+Access interactive API documentation at:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+## ⚙️ Pipeline Orchestration
+
+### Dagster Integration
+
+The pipeline is orchestrated using Dagster for scheduling and monitoring:
+
+```python
+# Pipeline definition
+@job
+def telegram_etl_pipeline():
+    transformed_data = run_dbt_transformations(
+        loaded_data=load_raw_to_postgres(
+            enriched_data=run_yolo_enrichment(
+                scraped_data=scrape_telegram_data()
+            )
+        )
+    )
+```
+
+### Scheduling
+
+```python
+# Daily automated execution
+@schedule(
+    job=telegram_etl_pipeline,
+    cron_schedule="0 0 * * *"  # Daily at midnight UTC
+)
+def daily_telegram_etl_schedule():
+    return {}
+```
+
+### Monitoring Dashboard
+
+Access the Dagster UI at `http://localhost:3000` for:
+- Pipeline visualization
+- Run monitoring and logs
+- Schedule management
+- Asset lineage tracking
+
+## 🔧 Development
+
+### Local Development Setup
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
 # Activate virtual environment
 source venv/bin/activate
 
-# Run scraping
+# Run individual components
 python src/scrape.py
-
-# Load raw data
+python src/yolo_detector.py
 python src/load_raw_data.py
+```
 
-# Run dbt (from project root)
-cd telegram_dbt_project
-dbt run
+### Testing
+
+```bash
+# Run dbt tests
 dbt test
+
+# API testing
+pytest tests/
+
+# Data quality validation
+python tests/data_quality_tests.py
 ```
 
 ## 📁 Project Structure
 
 ```
-telegram_data_product/
-├── src/
-│   ├── scrape.py              # Telegram data extraction
-│   ├── load_raw_data.py       # Raw data loading to PostgreSQL
-│   └── config.py              # Configuration management
-├── telegram_dbt_project/
-│   ├── models/
-│   │   ├── staging/
-│   │   │   ├── stg_telegram_messages.sql
-│   │   │   └── sources.yml
-│   │   └── marts/
-│   │       ├── dim_channels.sql
-│   │       ├── dim_dates.sql
-│   │       ├── fct_messages.sql
-│   │       └── schema.yml
-│   ├── tests/
-│   │   └── no_negative_views.sql
-│   └── dbt_project.yml
-├── data/
-│   └── raw/
-│       └── telegram_messages/
-│           └── YYYY-MM-DD/
-│               └── channel_name.json
-├── docker-compose.yml
-├── Dockerfile
-├── requirements.txt
-├── .env
-└── README.md
+telegram_medical_data_pipline/
+├── src/                         # Source code
+│   ├── scrape.py                # Telegram scraping logic
+│   ├── yolo_detector.py         # Object detection
+│   ├── load_raw_data.py         # Data loading
+│   └── config.py                # Configuration management
+├── telegram_dbt_project/        # dbt transformation project
+│   ├── models/                  # Data models
+│   │   ├── staging/             # Staging models (stg_telegram_messages, stg_yolo_detections)
+│   │   └── marts/               # Data mart models (dim_channels, dim_dates, fct_messages, fct_image_detections)
+│   ├── tests/                   # Custom data tests
+│   └── dbt_project.yml          # dbt configuration
+├── my_project/                  # FastAPI application
+│   ├── main.py                  # API entry point
+│   ├── models.py                # SQLAlchemy models
+│   ├── database.py              # SQLAlchemy database configuration
+│   ├── schemas.py               # Pydantic schemas
+│   └── crud.py                  # Database operations
+├── dagster_project/             # Pipeline orchestration
+│   ├── __init__.py              # Dagster package initialization
+│   ├── repository.py            # Dagster repository definition
+│   ├── jobs.py                  # Pipeline definitions
+│   ├── ops.py                   # Individual operations
+│   └── schedules.py             # Scheduling configuration
+├── data/                        # Data storage
+│   ├── raw/                     # Raw data lake
+│   │   ├── telegram_messages/{date}/{channel_name}.json   # Partitioned message data
+│   │   ├── telegram_media/      # Downloaded media files
+│   │   └── yolo_detections/     # AI detection results
+├── Dockerfile                   # Container configuration
+├── docker-compose.yml           # Service orchestration
+├── requirements.txt             # Python dependencies
+├── .env                         # Environment variables
+├── .gitignore                   # Git ignore rules
+└── README.md                    # readme file
 ```
 
-## 🔧 Data Pipeline Components
+## 🔒 Security & Configuration
 
-### 1. Data Extraction (`src/scrape.py`)
-- **Purpose**: Scrapes messages from specified Telegram channels
-- **Technology**: Telethon (Telegram API client)
-- **Output**: Partitioned JSON files in `data/raw/telegram_messages/`
-- **Features**:
-  - Asynchronous processing for multiple channels
-  - Comprehensive logging
-  - Media metadata extraction
-  - Date-based partitioning
+### Environment Variables
 
-### 2. Data Loading (`src/load_raw_data.py`)
-- **Purpose**: Loads raw JSON data into PostgreSQL
-- **Target**: `raw.telegram_messages` table
-- **Features**:
-  - Incremental loading (prevents duplicates)
-  - JSONB storage for flexible querying
-  - Transaction management
-  - Error handling and logging
+All sensitive credentials are managed via `.env` file:
 
-### 3. Data Transformation (dbt)
-- **Purpose**: Transforms raw data into analytical star schema
-- **Layers**:
-  - **Staging**: `stg_telegram_messages` - initial cleaning and type casting
-  - **Marts**: Dimensional tables for analytics
-- **Features**:
-  - Surrogate key generation
-  - Referential integrity
-  - Comprehensive testing
-
-## 🧪 Testing Strategy
-
-### Built-in dbt Tests
-- **Uniqueness**: Primary keys in all dimension tables
-- **Not Null**: Critical columns cannot be empty
-- **Relationships**: Foreign key integrity between fact and dimension tables
-
-### Custom Tests
-- **Business Rules**: `no_negative_views.sql` ensures views_count ≥ 0
-- **Data Quality**: Custom SQL tests for specific business logic
-
-### Running Tests
 ```bash
-# Run all tests
-docker exec telegram_app dbt test --project-dir telegram_dbt_project
-
-# Run specific test
-docker exec telegram_app dbt test --select test_name --project-dir telegram_dbt_project
+# Never commit .env to version control
+echo ".env" >> .gitignore
 ```
 
-## 📖 Documentation
+### Docker Security
 
-### Generate dbt Documentation
+```dockerfile
+# Use non-root user in production
+RUN adduser --disabled-password --gecos '' appuser
+USER appuser
+```
+
+### Database Security
+
+- SSL-enabled PostgreSQL connections
+- Role-based access control
+- Encrypted credential storage
+
+## 🚀 Deployment
+
+### Production Deployment
+
 ```bash
-# Generate documentation
-docker exec telegram_app dbt docs generate --project-dir telegram_dbt_project
+# Build production image
+docker build -t telegram-data-product:latest .
 
-# Serve documentation locally
-docker exec telegram_app dbt docs serve --project-dir telegram_dbt_project --port 8080
+# Deploy with environment-specific configuration
+docker-compose -f docker-compose.prod.yml up -d
 ```
 
-Access documentation at: `http://localhost:8080`
+### Monitoring
 
-## 🔍 Data Quality & Monitoring
+- **Dagster UI**: Pipeline execution monitoring
+- **PostgreSQL logs**: Database performance tracking
+- **Application logs**: Centralized logging with structured output
 
-### Logging
-- **Scraping**: `scrape.log` - tracks extraction progress and errors
-- **Loading**: `load_raw_data.log` - monitors data loading operations
-- **Transformations**: dbt logs - transformation and test results
+## 📈 Performance Optimization
 
-### Data Validation
-- Automated tests run with each dbt execution
-- Data freshness checks
-- Schema validation
-- Business rule enforcement
+### Database Optimization
 
-## 🚨 Troubleshooting
-
-### Common Issues
-
-#### 1. Telegram Authentication
-```bash
-# If authentication fails, remove session file and re-authenticate
-rm telegram_scraper_session.session*
-python src/scrape.py
-```
-
-#### 2. Database Connection
-```bash
-# Test PostgreSQL connection
-docker exec telegram_app python src/config.py
-```
-
-#### 3. dbt Connection Issues
-```bash
-# Debug dbt connection
-docker exec telegram_app dbt debug --project-dir telegram_dbt_project
-```
-
-### Log Locations
-- Scraping logs: `scrape.log`
-- Loading logs: `load_raw_data.log`
-- dbt logs: `telegram_dbt_project/logs/`
-
-## 📈 Usage Examples
-
-### Query the Analytics Schema
 ```sql
--- Top channels by message volume
-SELECT 
-    dc.channel_username,
-    COUNT(*) as message_count,
-    AVG(fm.views_count) as avg_views
-FROM analytics.fct_messages fm
-JOIN analytics.dim_channels dc ON fm.channel_pk = dc.channel_pk
-GROUP BY dc.channel_username
-ORDER BY message_count DESC;
-
--- Daily message trends
-SELECT 
-    dd.scraped_date,
-    COUNT(*) as daily_messages,
-    SUM(fm.views_count) as total_views
-FROM analytics.fct_messages fm
-JOIN analytics.dim_dates dd ON fm.date_pk = dd.date_pk
-GROUP BY dd.scraped_date
-ORDER BY dd.scraped_date;
+-- Indexes for query performance
+CREATE INDEX idx_messages_channel_date ON fct_messages(channel_pk, date_pk);
+CREATE INDEX idx_detections_confidence ON fct_image_detections(confidence_score);
 ```
 
-## 🔄 Maintenance
+### Caching Strategy
 
-### Regular Operations
-```bash
-# Daily data refresh
-docker exec telegram_app python src/scrape.py
-docker exec telegram_app python src/load_raw_data.py
-docker exec telegram_app dbt run --project-dir telegram_dbt_project
-
-# Weekly testing
-docker exec telegram_app dbt test --project-dir telegram_dbt_project
-```
-
-### Adding New Channels
-Edit `TARGET_CHANNELS` list in `src/scrape.py`:
-```python
-TARGET_CHANNELS = [
-    '@existing_channel',
-    '@new_channel_to_add'
-]
-```
+- API response caching for frequently accessed data
+- Database query result caching
+- Media file caching for object detection
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create feature branch: `git checkout -b feature/new-feature`
-3. Commit changes: `git commit -m 'Add new feature'`
-4. Push to branch: `git push origin feature/new-feature`
-5. Submit pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📋 Requirements
+### Code Standards
 
-### Python Dependencies
-```
-telethon>=1.24.0
-psycopg2-binary>=2.9.0
-python-dotenv>=0.19.0
-dbt-postgres>=1.4.0
-```
+- Follow PEP 8 for Python code
+- Use type hints for all functions
+- Write comprehensive docstrings
+- Maintain test coverage above 80%
 
-### System Requirements
-- Docker 20.10+
-- Docker Compose 2.0+
-- PostgreSQL 13+
-- Python 3.8+
+## 📝 License
 
-## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 🆘 Support
 
-## 📞 Support
+For issues and questions:
+- Create an issue on GitHub
+- Check the [documentation](docs/)
+- Review the [FAQ](docs/FAQ.md)
 
-For questions or issues:
-1. Check the troubleshooting section
-2. Review logs in the respective log files
-3. Open an issue in the repository
+## 🔄 Changelog
+
+### v1.0.0 (2024-01-15)
+- Initial release with full ETL pipeline
+- Telegram data scraping with Telethon
+- YOLOv8 object detection integration
+- dbt-powered data transformations
+- FastAPI analytical endpoints
+- Dagster orchestration and scheduling
 
 ---
 
-**Note**: This project is for educational purposes. Ensure compliance with Telegram's Terms of Service and applicable data protection regulations when scraping data.
+**Built with ❤️ for medical data analytics**
