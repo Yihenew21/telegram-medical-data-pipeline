@@ -26,3 +26,5 @@ target/
 telegram_scraper_session.session
 *.session
 scrape.log
+
+*.pt

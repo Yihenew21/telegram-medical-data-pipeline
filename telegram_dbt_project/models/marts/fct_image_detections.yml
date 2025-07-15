@@ -1,0 +1,45 @@
+# telegram_dbt_project/models/marts/_marts.yml (or similar)
+version: 2
+
+models:
+  - name: fct_image_detections
+    description: "Fact table containing individual object detections from Telegram media."
+    columns:
+      - name: yolo_detection_key
+        description: "A unique identifier for each detected object instance."
+        tests:
+          - unique
+          - not_null
+      - name: message_id
+        description: "Foreign key to fct_messages.id, linking the detection to its original Telegram message."
+        tests:
+          # This test requires dbt-expectations package.
+          # If you don't have it, you can skip this test for now.
+          # - dbt_expectations.relationships(to: ref('fct_messages'), field: message_id)
+          - not_null # Ensure message_id is always present
+      - name: detected_object_class
+        description: "The class of the detected object (e.g., 'person', 'cup', 'car')."
+        tests:
+          - not_null
+      - name: confidence_score
+        description: "The confidence score of the detection (0-1)."
+        tests:
+          - not_null
+          - dbt_expectations.expression_is_true:
+              expression: "confidence_score >= 0 AND confidence_score <= 1"
+      - name: detection_timestamp
+        description: "Timestamp when the object detection was performed."
+        tests:
+          - not_null
+      - name: box_top_left_x
+        description: "X-coordinate of the top-left corner of the bounding box (normalized 0-1)."
+      - name: box_top_left_y
+        description: "Y-coordinate of the top-left corner of the bounding box (normalized 0-1)."
+      - name: box_width
+        description: "Width of the bounding box (normalized 0-1)."
+      - name: box_height
+        description: "Height of the bounding box (normalized 0-1)."
+      - name: dbt_inserted_at
+        description: "Timestamp when the record was inserted into this table by dbt."
+        tests:
+          - not_null
