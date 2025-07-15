@@ -28,3 +28,4 @@ telegram_scraper_session.session
 scrape.log
 
 *.pt
+.tmp_dagster_home_878kzolo
