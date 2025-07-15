@@ -1,3 +1,4 @@
+# src/load_raw_data.py
 import os
 import json
 import glob
@@ -22,9 +23,14 @@ DB_USER = os.getenv("POSTGRES_USER")
 DB_PASSWORD = os.getenv("POSTGRES_PASSWORD")
 DB_PORT = os.getenv("POSTGRES_PORT")
 
-# Path to your raw data lake
-RAW_DATA_LAKE_PATH = os.path.join(
+# Path to your raw data lake for Telegram messages
+RAW_TELEGRAM_MESSAGES_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), "../data/raw/telegram_messages"
+)
+
+# Path to your raw data lake for YOLO detections
+RAW_YOLO_DETECTIONS_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "../data/raw/yolo_detections"
 )
 
 
@@ -45,7 +51,7 @@ def get_db_connection():
         raise
 
 
-def create_raw_table(cursor):
+def create_telegram_messages_table(cursor):
     """
     Creates the 'raw.telegram_messages' table if it doesn't exist.
     Stores the original JSON message as JSONB for flexibility.
@@ -62,48 +68,60 @@ def create_raw_table(cursor):
             inserted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
 
-        -- Add an index for faster lookups based on channel and date
         CREATE INDEX IF NOT EXISTS idx_raw_channel_date
         ON raw.telegram_messages (channel_username, scraped_date);
-
-        -- Add a unique constraint to prevent duplicate message_id per channel_username per scraped_date (though message_id itself should be unique globally)
-        -- Consider carefully if message_id is truly globally unique or only unique within a channel.
-        -- For Telegram messages, message.id is unique within a channel. For global uniqueness, we might need channel_id + message_id.
-        -- Let's refine the PK to be (message_id, channel_id) later if needed for dbt or assume for now message_id from Telethon is globally distinct.
-        -- For raw table, message_id as PK is fine if we only insert once.
     """
     )
     logger.info("Checked/created 'raw.telegram_messages' table.")
 
 
-# --- 3. Data Loading Logic ---
-def load_json_to_postgres():
+def create_yolo_detections_table(cursor):  # NEW FUNCTION
     """
-    Reads JSON files from the data lake and loads them into raw.telegram_messages.
+    Creates the 'raw.yolo_detections' table if it doesn't exist.
+    Stores the entire JSON array of detections from a file as JSONB.
+    """
+    cursor.execute(
+        """
+        CREATE SCHEMA IF NOT EXISTS raw;
+
+        CREATE TABLE IF NOT EXISTS raw.yolo_detections (
+            id SERIAL PRIMARY KEY,
+            detection_data JSONB NOT NULL,
+            file_name VARCHAR(255) NOT NULL, -- To track which file it came from
+            inserted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+        CREATE INDEX IF NOT EXISTS idx_yolo_inserted_at
+        ON raw.yolo_detections (inserted_at);
+    """
+    )
+    logger.info("Checked/created 'raw.yolo_detections' table.")
+
+
+# --- 3. Data Loading Logic ---
+def load_telegram_messages_to_postgres():  # Renamed existing function
+    """
+    Reads JSON files from the telegram_messages data lake and loads them into raw.telegram_messages.
     Handles incremental loading by checking existing data.
     """
     conn = None
     try:
         conn = get_db_connection()
-        conn.autocommit = False  # Start transaction
+        conn.autocommit = False
         cursor = conn.cursor()
 
-        create_raw_table(cursor)
+        create_telegram_messages_table(cursor)
 
-        # Get list of all JSON files in the data lake
-        # Walks through data/raw/telegram_messages/YYYY-MM-DD/*.json
         json_files = glob.glob(
-            os.path.join(RAW_DATA_LAKE_PATH, "**", "*.json"), recursive=True
+            os.path.join(RAW_TELEGRAM_MESSAGES_PATH, "**", "*.json"), recursive=True
         )
-        logger.info(f"Found {len(json_files)} JSON files to process.")
+        logger.info(f"Found {len(json_files)} Telegram message JSON files to process.")
 
         new_records_count = 0
         for file_path in json_files:
             try:
-                # Extract scraped_date from path (e.g., .../2025-07-11/channel.json)
                 path_parts = file_path.split(os.sep)
-                scraped_date_str = path_parts[-2]  # YYYY-MM-DD part
-                # Extract channel_username from filename (e.g., channel.json -> channel)
+                scraped_date_str = path_parts[-2]
                 channel_username = os.path.basename(file_path).replace(".json", "")
 
                 with open(file_path, "r", encoding="utf-8") as f:
@@ -114,27 +132,22 @@ def load_json_to_postgres():
                     continue
 
                 for msg in messages:
-                    # Ensure 'message_id' and 'channel_username' exist for insertion
                     if "message_id" not in msg or "channel_username" not in msg:
                         logger.warning(
                             f"Skipping malformed message in {file_path}: {msg.get('message_id', 'N/A')}"
                         )
                         continue
 
-                    # Check if message already exists (simple check by PK)
                     cursor.execute(
                         """
                         SELECT 1 FROM raw.telegram_messages
                         WHERE message_id = %s AND channel_username = %s
                     """,
                         (msg["message_id"], msg["channel_username"]),
-                    )  # Assuming (message_id, channel_username) is unique for now.
-                    # Telethon message.id is unique per channel.
+                    )
                     if cursor.fetchone():
-                        # logger.debug(f"Message {msg['message_id']} from {channel_username} already exists. Skipping.")
-                        continue  # Skip if message already exists
+                        continue
 
-                    # Insert new message
                     cursor.execute(
                         """
                         INSERT INTO raw.telegram_messages (
@@ -144,38 +157,118 @@ def load_json_to_postgres():
                         (
                             msg["message_id"],
                             msg["channel_username"],
-                            scraped_date_str,  # Use the date from the directory name
-                            json.dumps(msg),  # Store the entire message as JSONB
+                            scraped_date_str,
+                            json.dumps(msg),
                         ),
                     )
                     new_records_count += 1
                     if new_records_count % 100 == 0:
                         logger.info(
-                            f"Inserted {new_records_count} new records so far..."
+                            f"Inserted {new_records_count} new Telegram message records so far..."
                         )
 
-                conn.commit()  # Commit after processing each file (or batch of files)
+                conn.commit()
                 logger.info(
-                    f"Successfully processed and loaded data from {file_path}. New records in this file: {new_records_count - (new_records_count - len(messages)) if new_records_count > 0 else 0}"
+                    f"Successfully processed and loaded Telegram messages from {file_path}."
                 )
 
             except json.JSONDecodeError as jde:
                 logger.error(f"Invalid JSON in file {file_path}: {jde}", exc_info=True)
-                conn.rollback()  # Rollback changes for this file if parsing fails
+                conn.rollback()
             except Exception as e:
                 logger.error(f"Error processing file {file_path}: {e}", exc_info=True)
-                conn.rollback()  # Rollback changes for this file on any other error
+                conn.rollback()
 
         logger.info(
-            f"Finished loading raw data. Total new records inserted: {new_records_count}."
+            f"Finished loading Telegram message raw data. Total new records inserted: {new_records_count}."
         )
 
     except Exception as e:
         logger.critical(
-            f"Fatal error during raw data loading process: {e}", exc_info=True
+            f"Fatal error during Telegram message raw data loading process: {e}",
+            exc_info=True,
         )
         if conn:
-            conn.rollback()  # Ensure rollback on fatal errors
+            conn.rollback()
+    finally:
+        if conn:
+            conn.close()
+
+
+def load_yolo_detections_to_postgres():  # NEW FUNCTION
+    """
+    Reads YOLO detection JSON files and loads their content into raw.yolo_detections.
+    Each file (which contains an array of detections) is loaded as one JSONB record.
+    """
+    conn = None
+    try:
+        conn = get_db_connection()
+        conn.autocommit = False
+        cursor = conn.cursor()
+
+        create_yolo_detections_table(cursor)
+
+        json_files = glob.glob(
+            os.path.join(RAW_YOLO_DETECTIONS_PATH, "yolo_detections_*.json"),
+            recursive=False,  # Not recursive for yolo files
+        )
+        logger.info(f"Found {len(json_files)} YOLO detection JSON files to process.")
+
+        new_files_loaded_count = 0
+        for file_path in json_files:
+            file_name = os.path.basename(file_path)
+            try:
+                # Check if this file has already been loaded
+                cursor.execute(
+                    """
+                    SELECT 1 FROM raw.yolo_detections
+                    WHERE file_name = %s
+                """,
+                    (file_name,),
+                )
+                if cursor.fetchone():
+                    logger.debug(f"File {file_name} already loaded. Skipping.")
+                    continue
+
+                with open(file_path, "r", encoding="utf-8") as f:
+                    detections_array = json.load(f)
+
+                if not detections_array:
+                    logger.warning(
+                        f"File {file_path} contains no detections. Skipping."
+                    )
+                    continue
+
+                # Insert the entire JSON array as one record
+                cursor.execute(
+                    """
+                    INSERT INTO raw.yolo_detections (detection_data, file_name)
+                    VALUES (%s::jsonb, %s)
+                """,
+                    (json.dumps(detections_array), file_name),
+                )
+                conn.commit()
+                new_files_loaded_count += 1
+                logger.info(f"Successfully loaded YOLO detections from {file_name}.")
+
+            except json.JSONDecodeError as jde:
+                logger.error(f"Invalid JSON in file {file_path}: {jde}", exc_info=True)
+                conn.rollback()
+            except Exception as e:
+                logger.error(f"Error processing file {file_path}: {e}", exc_info=True)
+                conn.rollback()
+
+        logger.info(
+            f"Finished loading YOLO detection raw data. Total new files loaded: {new_files_loaded_count}."
+        )
+
+    except Exception as e:
+        logger.critical(
+            f"Fatal error during YOLO detection raw data loading process: {e}",
+            exc_info=True,
+        )
+        if conn:
+            conn.rollback()
     finally:
         if conn:
             conn.close()
@@ -184,5 +277,6 @@ def load_json_to_postgres():
 # --- 4. Main Execution ---
 if __name__ == "__main__":
     logger.info("Starting raw data loading process to PostgreSQL.")
-    load_json_to_postgres()
+    load_telegram_messages_to_postgres()  # Call the Telegram messages loader
+    load_yolo_detections_to_postgres()  # Call the NEW YOLO detections loader
     logger.info("Raw data loading process finished.")
